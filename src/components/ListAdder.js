@@ -45,7 +45,7 @@ export default class Listfield extends Component {
         </form>
       </div>
       :<div className='create-list-link'>
-         <p className='list-link' onClick={this.handleClick}>Add a list</p>
+         <p className='list-link' onClick={this.handleClick}>+ Add another list</p>
        </div>
         }
         </div>

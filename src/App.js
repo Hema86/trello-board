@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard } from './data/getTrelloData'
+import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateBoardData } from './data/getTrelloData'
 import Lists from './components/Lists'
 import ListAdder from './components/ListAdder'
 import produce from 'immer'
@@ -10,7 +10,8 @@ class App extends Component {
     super()
     this.state = {
       board: '',
-      isLoaded: false
+      isLoaded: false,
+      isEditing:false
     }
   }
   componentDidMount () {
@@ -19,7 +20,8 @@ class App extends Component {
       .then(board => {
         // console.log(board)
         this.setState({
-          board: board
+          board: board,
+          chandedText:board.name
         }, () => {
           getTrelloLists(board.id).then(resp => resp.json())
             .then(lists => {
@@ -118,6 +120,27 @@ addCard = (cardName, id) => {
   }
 }
 
+handleEditing = () =>{
+  this.setState({
+    isEditing:true
+  })
+}
+boardEditingDone = (event) => {
+  console.log('done')
+  if(event.keyCode === 13) {
+    updateBoardData(event.target.value)
+    this.setState({
+      isEditing:false
+    })
+  }
+}
+
+handleEditingChange = (event) => {
+  console.log(event.target.value)
+  const newText = event.target.value
+  this.setState({chandedText:newText})
+}
+
   render () {
     // console.log(this.state.board)
     return (
@@ -128,7 +151,12 @@ addCard = (cardName, id) => {
         {this.state.isLoaded
           ? <div className='App'>
             <div className='board-header'>
-              <h2>{this.state.board.name}</h2>
+            {this.state.isEditing
+            ?<input type='text' className='edit-board' value={this.state.chandedText} 
+            onKeyDown={this.boardEditingDone} onChange={this.handleEditingChange}/>
+            :<span onClick={this.handleEditing}>{this.state.chandedText}</span>
+            }
+              
             </div>
             <div className='list-container'>
             <Lists lists={this.state.board.lists} addCard={this.addCard}/>

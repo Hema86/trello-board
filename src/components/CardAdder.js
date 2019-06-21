@@ -45,7 +45,7 @@ export default class List extends Component {
         </form>
       </div>
       :<div className='create-card-link'>
-         <p className='link' onClick={this.handleClick}>Add another card</p>
+         <span className='link' onClick={this.handleClick}>+ Add another card</span>
        </div>
         }
         </div>

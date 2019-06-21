@@ -18,6 +18,8 @@ body {
   margin:0;
 }
 .board-header{
+  width:104px;
+  height: 32px;
   margin:4px;
   font-size: 18px;
   font-weight: 700;
@@ -79,6 +81,18 @@ body {
   margin-bottom: 5px;
   width:237px;
 }
+.edit-board{
+  background: #fff;
+  font-size: 16px;
+  line-height: 4px;
+  width: 110px;
+  padding: 8px 8px 2px;
+  padding-right: 2px;
+  margin:0;
+  border: 2px solid #3273dc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
 .Board{
   width: 250px;
   background: white;
@@ -99,6 +113,21 @@ body {
   padding-bottom: 4px;
   border-radius: 4px;
 } 
+.create-list-link:hover, .board-header:hover{
+  background: rgba(0,0,0,.3);
+    background-color: rgba(0, 0, 0, 0.3);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: none;
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    border-radius: 4px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
 .list-link{
   color:#fff;
   position: relative;
