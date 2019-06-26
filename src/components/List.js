@@ -15,9 +15,9 @@ export default class List extends Component {
     })
   }
   listEditingDone = (event) => {
-    console.log('done')
-    console.log(event.target.value)
-    console.log(this.props.list.id)
+    // console.log('done')
+    // console.log(event.target.value)
+    // console.log(this.props.list.id)
     if(event.keyCode === 13) {
       updateListData(event.target.value, this.props.list.id)
       this.setState({
@@ -31,9 +31,9 @@ export default class List extends Component {
     this.setState({chandedText:newText})
   }  
   render () {
-      console.log(this.props.list.id)
+      // console.log(this.props.list)
     return (
-      <div>
+      <div className='list-header'>
         {this.state.isEditing
           ? <input type='text' className='board-input' value={this.state.chandedText}
             onKeyDown={this.listEditingDone} onChange={this.handleEditingChange} />
