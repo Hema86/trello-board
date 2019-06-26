@@ -30,9 +30,11 @@ import updateCardData from '../data/getTrelloData'
   return (
     <div className='card-editor'>
       <div className='popup'>
-      <textarea className='textarea' value={this.state.chandedText} onChange={this.handleEditingChange} onKeyDown={this.cardEditingDone}></textarea>
+      <form onSubmit={this.cardEditingDone}> 
+      <textarea className='textarea' value={this.state.chandedText} onChange={this.handleEditingChange}></textarea>
         {/* <input  style={this.divStyle} value={this.state.chandedText} onKeyDown={this.cardEditingDone} onChange={this.handleEditingChange}/> */}
         {/* <button className='save-card' onClick={this.cardEditingDone}>save</button> */}
+      </form>
       </div>
     </div>
   )

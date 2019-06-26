@@ -1,17 +1,15 @@
-import React, { Component, Fragment } from 'react'
-import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateBoardData } from './data/getTrelloData'
-import Lists from './components/Lists'
-import ListAdder from './components/ListAdder'
+import React, { Component } from 'react'
+import Board from './components/board/Board'
+import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard } from './data/getTrelloData'
 import produce from 'immer'
 import Loader from 'react-loader-spinner'
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       board: '',
-      isLoaded: false,
-      isEditing: false
+      isLoaded: false
     }
   }
   componentDidMount() {
@@ -120,63 +118,27 @@ class App extends Component {
     }
   }
 
-  handleEditing = () => {
-    this.setState({
-      isEditing: true
-    })
-  }
-  boardEditingDone = (event) => {
-    console.log('done')
-    if (event.keyCode === 13) {
-      updateBoardData(event.target.value)
-      this.setState({
-        isEditing: false
-      })
-    }
-  }
 
-  handleEditingChange = (event) => {
-    console.log(event.target.value)
-    const newText = event.target.value
-    this.setState({ chandedText: newText })
-  }
-
-  render() {
-    // console.log(this.state.board)
+  render () {
     return (
-      <Fragment>
+      <div className='main'>
         <div className='header'>
           <h2>Trello</h2>
         </div>
         {this.state.isLoaded
-          ? <div className='App'>
-            <div className='board-header'>
-              {this.state.isEditing
-                ? <input type='text' className='edit-board' value={this.state.chandedText}
-                  onKeyDown={this.boardEditingDone} onChange={this.handleEditingChange} />
-                : <span onClick={this.handleEditing}>{this.state.chandedText}</span>
-              }
+        ? <Board board={this.state.board}/>
+        : <div className='loader'>
+              <div className='load'>
+                 <h2>Loading cards</h2>
+                 <Loader
+                 type="ThreeDots"
+                 color="#FFF"
+                 height="50"
+                 width="50"/>
+              </div>
             </div>
-            <div className='list-container'>
-              <Lists lists={this.state.board.lists} addCard={this.addCard} />
-              <ListAdder addList={this.addList} />
-            </div>
-          </div>
-          : <div className='loader'>
-            <div className='load'>
-              <h2>Loading cards</h2>
-              <Loader
-                type="ThreeDots"
-                color="#FFF"
-                height="50"
-                width="50"
-              /></div>
-          </div>
         }
-      </Fragment>
-
+      </div>
     )
   }
 }
-
-export default App
