@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import List from '../lists/List'
 import ListAdder from '../lists/ListAdder'
 import { updateBoardData } from '../../data/getTrelloData'
+import '../board/board.css'
 
 
 class Board extends Component {
@@ -38,7 +39,7 @@ class Board extends Component {
     // console.log(this.state.board)
     return (
       <Fragment>
-        <div className='App'>
+        <div className='board-content'>
             <div className='board-header'>
               {this.state.isEditing
                 ? <input type='text' className='edit-board' value={this.state.chandedText}
@@ -48,10 +49,7 @@ class Board extends Component {
             </div>
             <div className='list-container'>
               { lists.map((list, index) =>{
-                 return (<div className='lists' key={index}>
-                    <List list={list} />
-                  </div>
-                 )
+                 return <List list={list} key={index}/>
               })}
               <ListAdder addList={this.addList} />
             </div>

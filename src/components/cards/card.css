@@ -1,0 +1,12 @@
+.cards{
+    background: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    padding: 6px 8px 2px;
+    margin:8px;
+    border-radius: 3px;
+  }
+  .cards h3{
+    margin:0;
+  }

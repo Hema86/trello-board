@@ -1,0 +1,13 @@
+.lists{
+    margin:4px;
+    width: 272px;
+    margin: 0 4px;
+    background: #dfe1e6;
+    /* max-height: 110px;
+    overflow-y:scroll; */
+    border-radius: 3px;
+    flex-wrap: wrap;
+  }
+  .list{
+    margin:4px;
+  }

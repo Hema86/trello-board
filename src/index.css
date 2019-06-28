@@ -17,43 +17,6 @@ body {
 .header h2{
   margin:0;
 }
-.board-header{
-  width:180px;
-  height: 32px;
-  margin:4px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 32px;
-  color:#fff;
-}
-.list-container{
-  display: flex;
-}
-.lists{
-  margin:4px;
-  width: 272px;
-  margin: 0 4px;
-  background: #dfe1e6;
-  /* max-height: 110px;
-  overflow-y:scroll; */
-  border-radius: 3px;
-  flex-wrap: wrap;
-}
-.list{
-  margin:4px;
-}
-.cards{
-  background: #fff;
-  font-size: 14px;
-  line-height: 20px;
-  font-weight: 400;
-  padding: 6px 8px 2px;
-  margin:8px;
-  border-radius: 3px;
-}
-.cards h3{
-  margin:0;
-}
 .load{
   display: flex;
   flex-wrap: wrap;
@@ -73,13 +36,10 @@ body {
   padding: 6px 8px 2px;
   padding-right: 2px;
   margin:0;
-  border-radius: 3px;
   border: 2px solid #3273dc;
   border-radius: 4px;
-  position: relative;
-  top:5px;
   margin-bottom: 5px;
-  width:237px;
+  width:232px;
   margin-left:4px;
 }
 .edit-board{
@@ -114,6 +74,7 @@ body {
   margin-left: 5px;
   padding-bottom: 4px;
   border-radius: 4px;
+  padding-top:4px;
 } 
 .create-list-link:hover, .board-header:hover{
   background: rgba(0,0,0,.3);
@@ -132,7 +93,6 @@ body {
 }
 .list-link{
   color:#fff;
-  position: relative;
   width: 249px;
   top: 8px;
   margin-top: 4px;
@@ -150,6 +110,7 @@ body {
 }
 .create-card-link{
   margin-left:5px;
+  padding-bottom: 4px;
 }
 .link{
   color: #8b94a5;
@@ -182,9 +143,9 @@ color:#6b778c;
 }
 .popup {
   margin-top:48px;
-  width: 600px;
+  width: 700px;
   height: 100%;
-  background: #fff;
+  background: #f4f5f7;
   color:#172b51;
   display: flex;
   flex-wrap:wrap;
@@ -221,7 +182,7 @@ color: #fff;
   margin-top: 8px;
   margin-left: 8px;
   width:272px;
-  height: 38px;
+  height: auto;
 }
 
 .textarea{
@@ -232,12 +193,28 @@ color: #fff;
   font-weight: 700;
   height: 32px;
   line-height: 24px;
-  margin: -4px -8px;
-  min-height: 24px;
+  /* margin: -4px -8px; */
   padding: 4px 8px;
   resize: none;
   width: 565px;
   margin-top: 9px;
   margin-left: 5px;
-  height: 13px;
+  overflow: none;
+  /* height: 13px; */
+}
+.card-edit-mode{
+  box-sizing: border-box;
+  background: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  padding: 2px 2px;
+  border: 2px solid #3273dc;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  width:660px;
+  height: 32px;
+  resize: none;
+ justify-content: center;
+  
 }

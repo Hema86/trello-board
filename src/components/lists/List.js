@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { updateListData } from '../../data/getTrelloData'
 import Card from '../cards/Card'
 import CardAdder from '../cards/CardAdder'
+import '../lists/list.css'
 
 export default class List extends Component {
   constructor (props) {
@@ -17,9 +18,6 @@ export default class List extends Component {
     })
   }
   listEditingDone = (event) => {
-    // console.log('done')
-    // console.log(event.target.value)
-    // console.log(this.props.list.id)
     if(event.keyCode === 13) {
       updateListData(event.target.value, this.props.list.id)
       this.setState({
@@ -35,12 +33,14 @@ export default class List extends Component {
   render () {
       // console.log(this.props.list)
     return (
+      <div className='lists'>
       <div className='list-header'>
         {this.state.isEditing
           ? <input type='text' className='board-input' value={this.state.chandedText}
             onKeyDown={this.listEditingDone} onChange={this.handleEditingChange} />
           : <span className='list' onClick={this.handleEditing}>{this.state.chandedText}</span>
         }
+        </div>
         {this.props.list.cards
           ? (this.props.list.cards.map((card, index) => {
             return (
