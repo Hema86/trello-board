@@ -35,7 +35,7 @@ export default class List extends Component {
     return (
         <div>
         {isCard?
-      <div className='Board'>
+      <div className='card-creater'>
         <form onSubmit={this.handleSubmit}>
           <input type='text' className='board-input' placeholder='Enter a listName' onChange={this.handleChange} value={this.state.title}/>
           <div className='wrap-btn'>

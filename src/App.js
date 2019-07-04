@@ -66,7 +66,7 @@ export default class App extends Component {
       createTrelloList(listName)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          // console.log(data)
           // console.log(this.state.board.lists)
           const board = produce(this.state.board, newBoard => {
             if (newBoard.lists) {
@@ -107,7 +107,7 @@ export default class App extends Component {
               }
             })
           })
-          console.log(board)
+          // console.log(board)
           this.setState({
             board: board,
             isLoaded: true
@@ -133,7 +133,7 @@ export default class App extends Component {
                  <h2>Loading cards</h2>
                  <Loader
                  type="ThreeDots"
-                 color="#FFF"
+                 color="#1f5c87"
                  height="50"
                  width="50"/>
               </div>

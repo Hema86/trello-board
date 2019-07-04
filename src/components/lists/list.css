@@ -1,13 +1,39 @@
 .lists{
     margin:4px;
     width: 272px;
-    margin: 0 4px;
-    background: #dfe1e6;
+    margin: 8px 8px;
     /* max-height: 110px;
     overflow-y:scroll; */
-    border-radius: 3px;
+    /* border-radius: 3px; */
     flex-wrap: wrap;
+    margin-right: 14px;
+  }
+  .list-header{
+    display: flex;
+    margin-top: 25px;
+    margin-left: 8px;
+    margin-right:8px;
+    width:272px;
+    height: 30px;
+    padding: 4px 8px;
+    background: #1f5c87;
   }
   .list{
     margin:4px;
+    color:#fff;
   }
+  .create-list-link{
+    text-align: center;
+    width:252px;
+    height: 30px;
+    margin-left: 12px;
+    margin-top:28px;
+    border-radius: 2px;
+    background-color: #d4d6db;
+    color: #464c59;
+    font-size: 14px;
+    cursor: pointer;
+    display:flex;
+    padding-top:4px;
+    padding-bottom: 4px;
+  } 
