@@ -41,7 +41,6 @@ export default class Listfield extends Component {
             <input type='submit' value='Create' className='submit-board-button' />
             <p className='cancel-btn' onClick={this.clickBack} >X</p>
           </div>
-          
         </form>
       </div>
       :<div className='create-list-link'>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Board from './components/board/Board'
-import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard } from './data/getTrelloData'
+import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateCardData } from './data/getTrelloData'
 import produce from 'immer'
 import Loader from 'react-loader-spinner'
 import './index.css'
@@ -118,7 +118,35 @@ export default class App extends Component {
       return
     }
   }
-
+  updateSingleCard = (name, id, idList) => {
+    console.log(name, id, idList)
+    if (name && id) {
+      updateCardData(name, id)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          const board = produce(this.state.board, newBoard => {
+            newBoard.lists.map(list => {
+              if (list.id === idList) {
+                list.cards.map(card => {
+                  if(card.id === id) {
+                    card.name = name
+                  }
+                })   
+              }
+            })
+          })
+          // console.log(board)
+          this.setState({
+            board: board
+          })
+        })
+        .catch(console.log)
+    } else {
+      return
+    }
+  }
+  
 
   render () {
     return (
@@ -127,7 +155,7 @@ export default class App extends Component {
           <h2>Trello</h2>
         </div>
         {this.state.isLoaded
-        ? <Board board={this.state.board}/>
+        ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard}/>
         : <div className='loader'>
               <div className='load'>
                  <h2>Loading cards</h2>

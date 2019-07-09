@@ -45,7 +45,7 @@ export default class List extends Component {
           ? (this.props.list.cards.map((card, index) => {
             return (
               <div className='cards' key={index}>
-                <Card card={card} />
+                <Card card={card} updateSingleCard={this.props.updateSingleCard}/>
               </div>
             )
           })
