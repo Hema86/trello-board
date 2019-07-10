@@ -146,6 +146,21 @@ export default class App extends Component {
       return
     }
   }
+  updateDropElement = (oldIndex, card, newIndex) => {
+    const board = produce(this.state.board, newBoard => {
+      newBoard.lists.map(list => {
+        if (list.id === card.idList) {
+          list.cards.splice(newIndex, 0, list.cards.splice(oldIndex, 1)[0])
+        }
+      })
+    })
+    // console.log(board)
+    this.setState({
+      board: board
+    })
+  
+ 
+  } 
   
 
   render () {
@@ -155,7 +170,7 @@ export default class App extends Component {
           <h2>Trello</h2>
         </div>
         {this.state.isLoaded
-        ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard}/>
+        ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement}/>
         : <div className='loader'>
               <div className='load'>
                  <h2>Loading cards</h2>

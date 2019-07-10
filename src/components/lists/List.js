@@ -9,7 +9,8 @@ export default class List extends Component {
     super(props)
     this.state = {
       isEditing: false,
-      chandedText:this.props.list.name
+      chandedText:this.props.list.name,
+      draggedTask:{}
         }
       }
   handleEditing = () =>{
@@ -30,6 +31,28 @@ export default class List extends Component {
     const newText = event.target.value
     this.setState({chandedText:newText})
   }  
+
+   allowDrop = (ev) =>{
+    ev.preventDefault();
+  }
+  
+  onDrag = (ev, card) =>{
+    ev.dataTransfer.setData("text", ev.target.id);
+    console.log(ev.target.id)
+    this.setState({
+      draggedTask: card  
+    })
+    // event.preventDefault()
+  
+  }
+  
+   drop = (ev) => {
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    const index = ev.target.id
+    console.log(data)
+    this.props.updateDropElement(data, this.state.draggedTask, index)
+  }
   render () {
       // console.log(this.props.list)
     return (
@@ -41,10 +64,11 @@ export default class List extends Component {
           : <span className='list' onClick={this.handleEditing}>{this.state.chandedText}</span>
         }
         </div>
+        <div className='drop-container' onDrop={this.drop} onDragOver={this.allowDrop} id='data'>
         {this.props.list.cards
           ? (this.props.list.cards.map((card, index) => {
             return (
-              <div className='cards' key={index}>
+              <div className='cards' key={index} onDragStart={(event) => this.onDrag(event, card)} draggable='true' id={index}>
                 <Card card={card} updateSingleCard={this.props.updateSingleCard}/>
               </div>
             )
@@ -52,6 +76,7 @@ export default class List extends Component {
           )
           : <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
         }
+        </div>
         <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
 
       </div>
