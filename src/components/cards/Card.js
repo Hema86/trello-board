@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 // import Popup from '../../popup/Popup'
 import CardDesc from '../../popup/CardDesc'
 import '../cards/card.css'
+import EditPopup from './EditPopup'
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 
 export default class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showPopup: false
+      chandedText:this.props.card.name,
+      showPopup: false,
+      isEditing:false
     }
   }
   handleClick = (event) => {
@@ -24,21 +27,36 @@ export default class Card extends Component {
       showPopup: false
     })
   }
+  clickEdit = () => {
+    this.setState({
+      isEditing:true
+    })
+  }
   render() {
     // console.log(this.props.card)
+    // element.getBoundingClientRect();
     return (
       this.state.showPopup
         ? <React.Fragment>
           <CardDesc card={this.props.card} closePopup={this.closePopup} updateSingleCard={this.props.updateSingleCard} />
-          <div className='card-container'>
             <span onClick={this.handleClick} draggable={true}>{this.props.card.name}</span>
-            <span>{this.props.card.due}</span>
-          </div>
+            <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
+            {/* <span>{this.props.card.due}</span> */}
         </React.Fragment>
-        : <div className='card-container'>
-            <span onClick={this.handleClick}  draggable={true}>{this.props.card.name}</span>
-            <span>{this.props.card.due}</span>
-          </div>
+        :<React.Fragment>
+          {this.state.isEditing
+            ? <div className='pop'>
+               <EditPopup chandedText={this.state.chandedText}/>
+              </div>
+            : <React.Fragment>
+                <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
+                {/* <span>{this.props.card.due}</span> */}
+                <span>
+                  <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit}/>
+                </span>
+            </React.Fragment>
+          }
+         </React.Fragment>
     )
   }
 }

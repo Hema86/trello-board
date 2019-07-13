@@ -9,6 +9,7 @@
     margin:8px;
     height: 30px;
     width: 272px;
+    justify-content: space-between;
     /* border-radius: 3px; */
   }
   .cards h3{
