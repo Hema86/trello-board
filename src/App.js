@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Board from './components/board/Board'
-import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateCardData } from './data/getTrelloData'
+import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateCardData, dltCard } from './data/getTrelloData'
 import produce from 'immer'
 import Loader from 'react-loader-spinner'
 import './index.css'
@@ -124,8 +124,8 @@ export default class App extends Component {
       updateCardData(name, id)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-          const board = produce(this.state.board, newBoard => {
+          // console.log(data)
+          const updatedBoard = produce(this.state.board, newBoard => {
             newBoard.lists.map(list => {
               if (list.id === idList) {
                 list.cards.map(card => {
@@ -136,9 +136,8 @@ export default class App extends Component {
               }
             })
           })
-          // console.log(board)
           this.setState({
-            board: board
+            board: updatedBoard
           })
         })
         .catch(console.log)
@@ -149,12 +148,6 @@ export default class App extends Component {
   updateDropElement = (oldIndex, card, newIndex) => {
     const newBoard = produce(this.state.board, newBoard => {
       newBoard.lists.map(list => {
-        console.log('*****************')
-        console.log('list.id')
-        console.log(list.id)
-        console.log('card.idList')
-        console.log(card.idList)
-
         if (list.id === card.idList) {
          list.cards.splice(newIndex, 0, list.cards.splice(oldIndex, 1)[0])
          list.cards.map(card =>{
@@ -163,24 +156,35 @@ export default class App extends Component {
         }
       })
     })
-    // console.log(board.lists)
-    console.log(newBoard)
     this.setState({
       board: newBoard
     })
-  
-  //  console.log(board)
   } 
-  
 
+  handleDelete = (cardObj) => {
+    console.log(cardObj)
+  const newBoard = produce(this.state.board, newBoard => {
+    newBoard.lists.map(list => {
+      if (list.id === cardObj.idList) {
+       let updatedCards = list.cards.filter(card => card.id !== cardObj.id) 
+         list.cards = updatedCards
+          dltCard(cardObj.id) 
+         }
+       })
+    })
+  this.setState({
+    board: newBoard
+  })
+}
   render () {
+    // console.log(this.state.board.lists)
     return (
       <div className='main'>
         <div className='header'>
           <h2>Trello</h2>
         </div>
         {this.state.isLoaded
-        ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard}/>
+        ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete}/>
         : <div className='loader'>
               <div className='load'>
                  <h2>Loading cards</h2>

@@ -69,7 +69,7 @@ export default class List extends Component {
           ? (this.props.list.cards.map((card, index) => {
             return (
               <div className='cards' key={index} onDragStart={(event) => this.onDrag(event, card)} draggable='true' id={index}>
-                <Card card={card} updateSingleCard={this.props.updateSingleCard}/>
+                <Card card={card} updateSingleCard={this.props.updateSingleCard} deleteCard={this.props.deleteCard}/>
               </div>
             )
           })

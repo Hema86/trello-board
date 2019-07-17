@@ -77,3 +77,13 @@ export const getAllCards = (id) => {
     }
   })
 }
+
+export const dltCard = (id) => {
+  // console.log(id)
+  return fetch(`https://api.trello.com/1/lists/${id}/cards?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+}

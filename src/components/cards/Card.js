@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import Popup from '../../popup/Popup'
-import CardDesc from '../../popup/CardDesc'
+import CardDesc from '../popup/CardDesc'
 import '../cards/card.css'
 import EditPopup from './EditPopup'
 
@@ -27,33 +27,35 @@ export default class Card extends Component {
       showPopup: false
     })
   }
+  closeEditor = () => {
+    this.setState({
+      isEditing:false
+    })
+  }
   clickEdit = () => {
     this.setState({
       isEditing:true
     })
   }
   render() {
-    // console.log(this.props.card)
+    console.log(this.props.card)
     // element.getBoundingClientRect();
     return (
       this.state.showPopup
         ? <React.Fragment>
           <CardDesc card={this.props.card} closePopup={this.closePopup} updateSingleCard={this.props.updateSingleCard} />
-            <span onClick={this.handleClick} draggable={true}>{this.props.card.name}</span>
+            <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
             <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
-            {/* <span>{this.props.card.due}</span> */}
         </React.Fragment>
         :<React.Fragment>
           {this.state.isEditing
             ? <div className='pop'>
-               <EditPopup chandedText={this.state.chandedText}/>
+                <EditPopup closeEditor={this.closeEditor} updateSingleCard={this.props.updateSingleCard} card={this.props.card} deleteCard={this.props.deleteCard}/>
+                <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
               </div>
             : <React.Fragment>
                 <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
-                {/* <span>{this.props.card.due}</span> */}
-                <span>
-                  <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit}/>
-                </span>
+                <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit}/>
             </React.Fragment>
           }
          </React.Fragment>

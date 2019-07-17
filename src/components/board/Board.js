@@ -49,7 +49,7 @@ class Board extends Component {
             </div>
             <div className='list-container'>
               { lists.map((list, index) =>{
-                 return <List list={list} key={index} updateSingleCard={this.props.updateSingleCard} updateDropElement={this.props.updateDropElement} addCard={this.props.addCard}/>
+                 return <List list={list} key={index} updateSingleCard={this.props.updateSingleCard} updateDropElement={this.props.updateDropElement} addCard={this.props.addCard} deleteCard={this.props.deleteCard}/>
               })}
               <ListAdder addList={this.addList} />
             </div>

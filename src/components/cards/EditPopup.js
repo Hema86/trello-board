@@ -1,35 +1,67 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faCalendar } from '@fortawesome/free-solid-svg-icons'
-import Color from '../Color'
-import DueDate from '../DueDate'
+import Color from './Color'
+import DueDate from './DueDate'
 import image from '../../images.jpeg'
 
 export default class EditPopup extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      chandedText:'',
+      changedText:this.props.card.name,
+      isEditing:false,
       showDate: false,
       showColor: false
     }
   }
 
-  handleChange = () => {
+  handleChange = (event) => {
     this.setState({
-      chandedText:true
+      changedText:event.target.value
     })
+  }
+
+  cardEditingDone = (event) => {
+    console.log('done')
+    // console.log(this.props.card.idList)
+    if (event.keyCode === 13) {
+      this.props.updateSingleCard(event.target.value, this.props.card.id, this.props.card.idList)
+      this.props.closeEditor()
+    }
   }
   handleDueDate = () => {
     this.setState({
       showDate:true
     })
   }
+  editCard = () => {
+    this.setState({
+      isEditing:true
+    })
+  }
+
+  handleColor = () => {
+    this.setState({
+      showColor:true
+    })
+  }
+   handleDelete = (event) => {
+     console.log(this.props.card)
+    this.props.deleteCard(this.props.card)
+    this.setState({
+      isEditing:true
+    })
+   }
   render () {
+    console.log(this.props.card.name)
     return (
       <div className='card-edit-modal'>
         <div className='modal'>
-          <input type='text' className='edit-card' value={this.props.chandedText} onChange={this.handleChange}/>
+         {this.state.isEditing
+         ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
+         : <span className='edit-card' onClick={this.editCard}>{this.state.changedText}</span>
+         }
         </div>
         <div className='options'>
           {this.state.showDate
