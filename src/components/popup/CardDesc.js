@@ -47,7 +47,7 @@ class CardDesc extends React.Component {
     })
   }
   render() {
-    console.log(this.props.card)
+    console.log(this.props)
     return (
       <div className='card-editor'>
         <div className='popup'>

@@ -39,7 +39,7 @@ export default class Card extends Component {
   }
   render() {
     console.log(this.props.card)
-    // element.getBoundingClientRect();
+    // element.getBoundingClientRect()
     return (
       this.state.showPopup
         ? <React.Fragment>
