@@ -1,21 +1,17 @@
 import { GET_BOARD } from '../actions/index'
 
 const initialState = {
-  board: [{
-    name: 'geekskool'
-  }]
+  isLoading: false,
+  board: []
 }
 
 function rootReducer (state = initialState, action) {
-  if (action.type === 'LODER')
-  { 
-if (action.type === GET_BOARD) {
+  if (action.type === GET_BOARD) {
     return Object.assign({}, state, {
-      board: state.board.concat(action.payload)
+      board: state.board.concat(action.payload),
+      isLoading: true
     })
-  } 
-}
-
+  }
   return state
 }
 export default rootReducer

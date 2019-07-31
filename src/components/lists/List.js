@@ -42,7 +42,6 @@ export default class List extends Component {
     this.setState({
       draggedTask: card  
     })
-    // event.preventDefault()
   
   }
   
@@ -54,7 +53,7 @@ export default class List extends Component {
     this.props.updateDropElement(data, this.state.draggedTask, index)
   }
   render () {
-      // console.log(this.props.list)
+    console.log(this.props.list)
     return (
       <div className='lists'>
       <div className='list-header'>
@@ -68,7 +67,7 @@ export default class List extends Component {
         {this.props.list.cards
           ? (this.props.list.cards.map((card, index) => {
             return (
-              <div className='cards' key={index} onDragStart={(event) => this.onDrag(event, card)} draggable='true' id={index}>
+              <div className='cards' key={index} onDragStart={(event) => this.onDrag(event, card)} draggable='true' id={index} >
                 <Card card={card} updateSingleCard={this.props.updateSingleCard} deleteCard={this.props.deleteCard}/>
               </div>
             )
@@ -77,7 +76,7 @@ export default class List extends Component {
           : <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
         }
         </div>
-        <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
+        {/* <CardAdder addCard={this.props.addCard} listId={this.props.list.id} /> */}
 
       </div>
     )

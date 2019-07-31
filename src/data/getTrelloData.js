@@ -1,24 +1,26 @@
-export const getBoardData = () => {
-  return fetch(`https://api.trello.com/1/boards/qaeG0QcQ?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+export const getBoardData = async () => {
+  const result = await fetch(`https://api.trello.com/1/boards/qaeG0QcQ?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
   })
+  return result.json()
 }
 
-export const updateBoardData = (name) => {
-  return fetch(`https://api.trello.com/1/boards/5cf8fcd23518ef10a2eea9a9?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+export const updateBoardData = async (name) => {
+  const result = await fetch(`https://api.trello.com/1/boards/5cf8fcd23518ef10a2eea9a9?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     method: 'PUT'
   })
+  return result.json()
 }
 
-export const createTrelloList = (name) => {
-  return fetch(`https://api.trello.com/1/boards/qaeG0QcQ/lists?name=${name}&pos=top&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+export const createTrelloList = async (name) => {
+  const result = await fetch(`https://api.trello.com/1/boards/qaeG0QcQ/lists?name=${name}&pos=top&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -26,28 +28,31 @@ export const createTrelloList = (name) => {
     method: 'POST'
   }
   )
+  return result.json()
 }
-export const getTrelloLists = (id) => {
-  return fetch(`https://api.trello.com/1/boards/${id}/lists?cards=none&card_fields=all&filter=open&fields=all&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+export const getTrelloLists = async (id) => {
+  const result = await fetch(`https://api.trello.com/1/boards/${id}/lists?cards=none&card_fields=all&filter=open&fields=all&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
   })
+  return result.json()
 }
-export const updateListData = (name, id) => {
+export const updateListData = async (name, id) => {
   console.log(name, id)
-  return fetch(`https://api.trello.com/1/lists/${id}?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+  const result = await fetch(`https://api.trello.com/1/lists/${id}?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     method: 'PUT'
   })
+  return result.json()
 }
-export const createCard = (name, id) => {
+export const createCard = async (name, id) => {
   // console.log(name, id)
-  return fetch(`https://api.trello.com/1/cards?name=${name}&idList=${id}&keepFromSource=all&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+  const result = await fetch(`https://api.trello.com/1/cards?name=${name}&idList=${id}&keepFromSource=all&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
     {
       headers: {
         'Content-Type': 'application/json',
@@ -57,33 +62,37 @@ export const createCard = (name, id) => {
     }
 
   )
+  return result.json()
 }
-export const updateCardData = (name, id) => {
+export const updateCardData = async (name, id) => {
   console.log(name, id)
-  return fetch(`https://api.trello.com/1/cards/${id}?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+  const result = await fetch(`https://api.trello.com/1/cards/${id}?name=${name}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
     method: 'PUT'
   })
+  return result.json()
 }
 
-export const getAllCards = (id) => {
-  return fetch(`https://api.trello.com/1/lists/${id}/cards?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+export const getAllCards = async (id) => {
+  const result = await fetch(`https://api.trello.com/1/lists/${id}/cards?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
   })
+  return result.json()
 }
 
-export const dltCard = (id) => {
+export const dltCard = async (id) => {
   // console.log(id)
-  return fetch(`https://api.trello.com/1/lists/${id}/cards?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
+  const result = await fetch(`https://api.trello.com/1/lists/${id}/cards?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     }
   })
+  return result.json()
 }

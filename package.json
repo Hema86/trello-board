@@ -13,9 +13,14 @@
     "react-dom": "^16.8.6",
     "react-loader-spinner": "^2.3.0",
     "react-pencil": "^1.1.1",
-    "react-scripts": "0.9.5"
+    "react-redux": "^7.1.0",
+    "react-scripts": "0.9.5",
+    "redux-thunk": "^2.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "redux": "^4.0.4",
+    "redux-devtools": "^3.5.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

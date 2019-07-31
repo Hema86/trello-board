@@ -12,9 +12,10 @@ import { fetchBoard } from './actions/index'
 //     addBoard: board => dispatch(addBoard(board))
 //   }
 // }
-// const mapStateToProps = state => {
-//   return { board: state.board }
-// }
+const mapStateToProps = state => {
+  return { board: state.board,
+    isLoading: state.isLoading }
+}
 
 class App extends Component {
   constructor (props) {
@@ -179,8 +180,8 @@ class App extends Component {
         <div className='header'>
           <h2>Trello</h2>
         </div>
-        {this.state.isLoaded
-          ? <Board board={this.state.board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete} />
+        {this.props.isLoading
+          ? <Board updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete} />
           : <div className='loader'>
             <div className='load'>
               <h2 onClick={this.handleClick}>Loading cards</h2>
@@ -205,4 +206,4 @@ class App extends Component {
 
 // export default connect(mapStateToProps)(App)
 
-export default connect(null, { fetchBoard })(App)
+export default connect(mapStateToProps, { fetchBoard })(App)
