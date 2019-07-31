@@ -3,17 +3,12 @@ import List from '../lists/List'
 import ListAdder from '../lists/ListAdder'
 import { updateBoardData } from '../../data/getTrelloData'
 import '../board/board.css'
-import { connect } from 'react-redux'
 
-const mapStateToProps = state => {
-  return { board: state.board
-    } 
-}
 class Board extends Component {
   constructor (props) {
       super(props)
       this.state = {
-          chandedText:this.props.board[0].name,
+          chandedText:this.props.board.name,
           isEditing:false
       }
   }
@@ -39,7 +34,7 @@ class Board extends Component {
   }
 
   render() {
-    const board = this.props.board[0]
+    const board = this.props.board
     // console.log(board.name)
     return (
       <Fragment>
@@ -64,4 +59,4 @@ class Board extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Board)
+export default Board

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Board from './components/board/Board'
-// import { getBoardData, getTrelloLists, getAllCards, createTrelloList, createCard, updateCardData, dltCard } from './data/getTrelloData'
-// import produce from 'immer'
 import Loader from 'react-loader-spinner'
 import './index.css'
 import { connect } from 'react-redux'
@@ -174,14 +172,15 @@ class App extends Component {
   //   })
   // }
   render () {
-    console.log(this.props.board)
+    const board = this.props.board[0]
+    console.log(board)
     return (
       <div className='main'>
         <div className='header'>
           <h2>Trello</h2>
         </div>
         {this.props.isLoading
-          ? <Board updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete} />
+          ? <Board board={board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete} />
           : <div className='loader'>
             <div className='load'>
               <h2 onClick={this.handleClick}>Loading cards</h2>

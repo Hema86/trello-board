@@ -53,7 +53,8 @@ export default class List extends Component {
     this.props.updateDropElement(data, this.state.draggedTask, index)
   }
   render () {
-    console.log(this.props.list)
+    // console.log(this.props.list)
+    // console.log(JSON.stringify(this.props.list))
     return (
       <div className='lists'>
       <div className='list-header'>

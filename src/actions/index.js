@@ -14,6 +14,7 @@ export function getBoard (payload) {
 export function fetchBoard () {
   return async function (dispatch) {
     const board = await fetchBoardData()
-    return dispatch(getBoard(board))
+    const actn = dispatch(getBoard(board))
+    return actn
   }
 }
