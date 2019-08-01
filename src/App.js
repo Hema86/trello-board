@@ -5,11 +5,6 @@ import './index.css'
 import { connect } from 'react-redux'
 import { fetchBoard } from './actions/index'
 
-// function mapDispatchToProps (dispatch) {
-//   return {
-//     addBoard: board => dispatch(addBoard(board))
-//   }
-// }
 const mapStateToProps = state => {
   return { board: state.board,
     isLoading: state.isLoading }
@@ -25,36 +20,6 @@ class App extends Component {
   componentDidMount () {
     this.props.fetchBoard()
   }
-  // updateLists = lists => {
-  //   // console.log(lists)
-  //   const board = produce(this.state.board, newBoard => {
-  //     newBoard['lists'] = lists
-  //   })
-  //   this.setState({
-  //     board: board
-  //   }, () => {
-  //     lists.map(list => {
-  //       getAllCards(list.id).then(resp => resp.json())
-  //         .then(cards => {
-  //           this.updateCards(cards, list.id)
-  //         })
-  //     })
-  //   })
-  // }
-  // updateCards = (cards, id) => {
-  //   const board = produce(this.state.board, newBoard => {
-  //     newBoard.lists.map(list => {
-  //       if (list.id === id) {
-  //         list['cards'] = cards
-  //       }
-  //     })
-  //   })
-  //   this.setState({
-  //     board: board,
-  //     isLoaded: true
-  //   })
-  // }
-
   //   addList = (listName) => {
   //     // console.log(listName)
   //     if (listName) {
@@ -173,7 +138,7 @@ class App extends Component {
   // }
   render () {
     const board = this.props.board[0]
-    console.log(board)
+    // console.log(board)
     return (
       <div className='main'>
         <div className='header'>
@@ -196,13 +161,5 @@ class App extends Component {
     )
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     board: state.board
-//   }
-// }
-
-// export default connect(mapStateToProps)(App)
 
 export default connect(mapStateToProps, { fetchBoard })(App)

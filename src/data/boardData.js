@@ -1,12 +1,9 @@
-import { getBoardData, getTrelloLists, getAllCards } from './getTrelloData'
+import { getBoardData, getTrelloLists, getAllCards, updateBoardData } from './getTrelloData'
 
 export const fetchBoardData = async () => {
   const board = await getBoardData()
   let lists = await getTrelloLists(board.id)
   board['lists'] = lists
-  // console.log(lists)
-  // get cards for all the lists - using await
-  // return board
   let lists1 = lists.map(async (list) => {
     const cards = await getAllCards(list.id)
     list['cards'] = cards
@@ -15,4 +12,10 @@ export const fetchBoardData = async () => {
   const result = await Promise.all(lists1)
   board['lists'] = result
   return board
+}
+
+export const updateBoard = async (boardName) => {
+  const updatedBoard = await updateBoardData(boardName)
+  // console.log(boardName)
+  return updatedBoard
 }

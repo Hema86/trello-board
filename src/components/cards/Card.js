@@ -38,8 +38,8 @@ export default class Card extends Component {
     })
   }
   render() {
-    console.log('**')
-    console.log(this.props.card)
+    // console.log('**')
+    // console.log(this.props.card)
     // element.getBoundingClientRect()
     return (
       this.state.showPopup

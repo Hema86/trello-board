@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import List from '../lists/List'
 import ListAdder from '../lists/ListAdder'
-import { updateBoardData } from '../../data/getTrelloData'
 import '../board/board.css'
+import { updtBoard } from '../../actions/index'
+import { connect } from 'react-redux'
 
 class Board extends Component {
   constructor (props) {
@@ -20,22 +21,21 @@ class Board extends Component {
   boardEditingDone = (event) => {
     console.log('done')
     if (event.keyCode === 13) {
-      updateBoardData(event.target.value)
+      this.props.updtBoard(this.state.chandedText)
       this.setState({
-        isEditing: false
+        isEditing:false
       })
     }
   }
 
   handleEditingChange = (event) => {
-    console.log(event.target.value)
+    // console.log(event.target.value)
     const newText = event.target.value
     this.setState({ chandedText: newText })
   }
 
   render() {
     const board = this.props.board
-    // console.log(board.name)
     return (
       <Fragment>
         <div className='board-content'>
@@ -58,5 +58,4 @@ class Board extends Component {
     )
   }
 }
-
-export default Board
+export default connect(null, { updtBoard })(Board)
