@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { addNewList } from '../../actions/index'
+import { connect } from 'react-redux'
 
-export default class Listfield extends Component {
+class ListAdder extends Component {
     constructor (props) {
         super(props)
         this.state={
@@ -21,7 +23,7 @@ export default class Listfield extends Component {
         handleSubmit = (event) => {
             // console.log(this.state.title)
             event.preventDefault()
-            this.props.addList(this.state.title)
+            this.props.addNewList(this.state.title)
             this.setState({ title: '' })
     }
     clickBack = event =>{
@@ -51,3 +53,5 @@ export default class Listfield extends Component {
     )
   }
 }
+
+export default connect(null, { addNewList })(ListAdder)

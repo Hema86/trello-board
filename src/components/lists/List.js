@@ -38,7 +38,7 @@ export default class List extends Component {
   
   onDrag = (ev, card) =>{
     ev.dataTransfer.setData("text", ev.target.id);
-    console.log(ev.target.id)
+    // console.log(ev.target.id)
     this.setState({
       draggedTask: card  
     })
@@ -49,7 +49,7 @@ export default class List extends Component {
     ev.preventDefault();
     const data = ev.dataTransfer.getData("text");
     const index = ev.target.id
-    console.log(data)
+    // console.log(data)
     this.props.updateDropElement(data, this.state.draggedTask, index)
   }
   render () {

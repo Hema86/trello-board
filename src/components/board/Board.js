@@ -50,7 +50,7 @@ class Board extends Component {
               {board.lists.map((list, index) =>{
                  return <List list={list} key={index} updateSingleCard={this.props.updateSingleCard} updateDropElement={this.props.updateDropElement} addCard={this.props.addCard} deleteCard={this.props.deleteCard}/>
               })}
-              <ListAdder addList={this.addList} />
+              <ListAdder />
             </div>
           </div>
       </Fragment>
