@@ -4,6 +4,7 @@ import { faTrash, faCalendar, faFastForward } from '@fortawesome/free-solid-svg-
 import Color from './Color'
 import DueDate from './DueDate'
 import image from '../../images.jpeg'
+import '../cards/card.css'
 
 export default class EditPopup extends Component {
   constructor (props) {
@@ -13,7 +14,8 @@ export default class EditPopup extends Component {
       isEditing:false,
       showDate: false,
       showColor: false,
-      bgColor: 'white'
+      bgColor: 'white',
+      dueDate:''
     }
   }
 
@@ -61,8 +63,11 @@ export default class EditPopup extends Component {
        bgColor: color
      })
    }
-   setDate = () =>{
-     
+   setDate = (date) =>{
+     console.log(date)
+     this.setState({
+       dueDate: date
+     })
    }
    render () {
     console.log(this.props.card.name)
@@ -71,7 +76,10 @@ export default class EditPopup extends Component {
         <div className='modal' style={{backgroundColor: this.state.bgColor}}>
          {this.state.isEditing
          ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
-         : <span className='edit-card' onClick={this.editCard}>{this.state.changedText}</span>
+         : <div>
+           <span className='edit-card' onClick={this.editCard}>{this.state.changedText}</span>
+           <div className='due-date'>{this.state.dueDate}</div>
+           </div>
          }
         </div>
         <div className='options'>
