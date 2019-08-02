@@ -74,10 +74,10 @@ export default class List extends Component {
             )
           })
           )
-          : <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
+          : null
         }
         </div>
-        {/* <CardAdder addCard={this.props.addCard} listId={this.props.list.id} /> */}
+        <CardAdder addCard={this.props.addCard} listId={this.props.list.id} />
 
       </div>
     )

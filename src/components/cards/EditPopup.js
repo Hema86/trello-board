@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faCalendar } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faCalendar, faFastForward } from '@fortawesome/free-solid-svg-icons'
 import Color from './Color'
 import DueDate from './DueDate'
 import image from '../../images.jpeg'
@@ -12,7 +12,8 @@ export default class EditPopup extends Component {
       changedText:this.props.card.name,
       isEditing:false,
       showDate: false,
-      showColor: false
+      showColor: false,
+      bgColor: 'white'
     }
   }
 
@@ -53,11 +54,21 @@ export default class EditPopup extends Component {
       isEditing:true
     })
    }
-  render () {
+ 
+   setBackground = (color) => {
+     console.log(color)
+     this.setState({
+       bgColor: color
+     })
+   }
+   setDate = () =>{
+     
+   }
+   render () {
     console.log(this.props.card.name)
     return (
       <div className='card-edit-modal'>
-        <div className='modal'>
+        <div className='modal' style={{backgroundColor: this.state.bgColor}}>
          {this.state.isEditing
          ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
          : <span className='edit-card' onClick={this.editCard}>{this.state.changedText}</span>
@@ -65,14 +76,14 @@ export default class EditPopup extends Component {
         </div>
         <div className='options'>
           {this.state.showDate
-            ? <DueDate />
+            ? <DueDate setDate={this.setDate}/>
             : <div className='card-edit-button' onClick={this.handleDueDate}>
                 <FontAwesomeIcon icon={faCalendar} color='#fff' />
                 <a className='option-link'>due date</a>
             </div>
           }
           { this.state.showColor
-          ? <Color />
+          ? <Color setBackground={this.setBackground}/>
           : <div className='card-edit-button' onClick={this.handleColor}>
               <img src={image} className='color-img' alt='color picker'/>
               <a className='option-link'>color</a>
