@@ -14,7 +14,7 @@ export default class EditPopup extends Component {
       isEditing:false,
       showDate: false,
       showColor: false,
-      bgColor: 'white',
+      bgColor: '#fff',
       dueDate:''
     }
   }
@@ -27,7 +27,6 @@ export default class EditPopup extends Component {
 
   cardEditingDone = (event) => {
     console.log('done')
-    // console.log(this.props.card.idList)
     if (event.keyCode === 13) {
       this.props.updateSingleCard(event.target.value, this.props.card.id, this.props.card.idList)
       this.props.closeEditor()
@@ -60,20 +59,24 @@ export default class EditPopup extends Component {
    setBackground = (color) => {
      console.log(color)
      this.setState({
-       bgColor: color
+       bgColor: color,
+       showColor:false
      })
+     this.props.setLabel(color)
    }
    setDate = (date) =>{
      console.log(date)
      this.setState({
-       dueDate: date
+       dueDate: date,
+       showDate:false
      })
+     this.props.setDue(date)
    }
    render () {
     console.log(this.props.card.name)
     return (
       <div className='card-edit-modal'>
-        <div className='modal' style={{backgroundColor: this.state.bgColor}}>
+        <div className='modal' style={{backgroundColor: this.state.bgColor}} onClick={this.props.closeEditor}>
          {this.state.isEditing
          ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
          : <div>

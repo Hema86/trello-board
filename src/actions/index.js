@@ -1,5 +1,4 @@
 import { fetchBoardData, updateBoard, createList } from '../data/boardData'
-// import { createTrelloList } from '../data/getTrelloData';
 
 export const GET_BOARD = 'GET_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
@@ -36,8 +35,6 @@ export function updtBoard (boardName) {
 export function addNewList (listName) {
   return async function (dispatch) {
     const newList = await createList(listName)
-    // console.log('newlist')
-    // console.log(newList)
     const actn = dispatch(addList(newList))
     return actn
   }

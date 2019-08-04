@@ -13,6 +13,7 @@
     "react-day-picker": "^7.3.0",
     "react-dom": "^16.8.6",
     "react-loader-spinner": "^2.3.0",
+    "react-onclickoutside": "^6.8.0",
     "react-pencil": "^1.1.1",
     "react-redux": "^7.1.0",
     "react-scripts": "0.9.5",

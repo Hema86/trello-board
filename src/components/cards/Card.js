@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-// import Popup from '../../popup/Popup'
 import CardDesc from '../popup/CardDesc'
 import '../cards/card.css'
 import EditPopup from './EditPopup'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 
@@ -13,7 +11,9 @@ export default class Card extends Component {
     this.state = {
       chandedText:this.props.card.name,
       showPopup: false,
-      isEditing:false
+      isEditing:false,
+      dueDate:'',
+      bgColor:'#fff'
     }
   }
   handleClick = (event) => {
@@ -37,28 +37,43 @@ export default class Card extends Component {
       isEditing:true
     })
   }
+  setDue = (date) => {
+    this.setState({
+      dueDate:date
+    })
+  }
+  setLabel = (color) => {
+    console.log(color)
+    this.setState({
+      bgColor:color
+    })
+  }
   render() {
-    // console.log('**')
-    // console.log(this.props.card)
-    // element.getBoundingClientRect()
+    console.log(this.props.card)
+    console.log(this.props.card.name)
+    console.log(this.props.card.desc)
     return (
       this.state.showPopup
         ? <React.Fragment>
-          <CardDesc card={this.props.card} closePopup={this.closePopup} updateSingleCard={this.props.updateSingleCard} />
+            <CardDesc card={this.props.card} closePopup={this.closePopup} updateSingleCard={this.props.updateSingleCard} />
             <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
             <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
         </React.Fragment>
         :<React.Fragment>
           {this.state.isEditing
             ? <div className='pop'>
-                <EditPopup closeEditor={this.closeEditor} updateSingleCard={this.props.updateSingleCard} card={this.props.card} deleteCard={this.props.deleteCard}/>
+                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} updateSingleCard={this.props.updateSingleCard} card={this.props.card} deleteCard={this.props.deleteCard}/>
                 <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
               </div>
             : <React.Fragment>
-                <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
+                {/* <span style={{backgroundColor: this.state.bgColor}}></span> */}
+                <div className='card-content' style={{backgroundColor: this.state.bgColor}}>
+                  <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
+                  <span className='due-date'>{this.state.dueDate}</span>
+                </div>
                 <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit}/>
             </React.Fragment>
-          }
+          } 
          </React.Fragment>
     )
   }

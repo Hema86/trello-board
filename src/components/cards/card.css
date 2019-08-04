@@ -10,7 +10,6 @@
     height: 30px;
     width: 272px;
     justify-content: space-between;
-    /* border-radius: 3px; */
   }
   .cards h3{
     margin:8px;
@@ -31,4 +30,7 @@
   }
   .due-date{
     color:black;
+  }
+  .card-content{
+    display: grid;
   }
