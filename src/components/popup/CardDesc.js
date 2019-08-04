@@ -47,9 +47,12 @@ class CardDesc extends React.Component {
     })
   }
   render() {
-    console.log(this.props.card.name)
+    console.log(this.props.card)
+    console.log(this.state.chandedText)
     return (
       <div className='card-editor'>
+      {this.props.card
+      ?
         <div className='popup'>
           {this.state.isEditing
             ? <div className='card-header'>
@@ -73,7 +76,10 @@ class CardDesc extends React.Component {
             </div>
           </Tabs>
         </div>
-      </div>
+     
+      : null
+        }
+         </div>
     )
   }
 }

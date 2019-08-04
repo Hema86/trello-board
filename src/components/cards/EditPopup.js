@@ -73,7 +73,7 @@ export default class EditPopup extends Component {
      this.props.setDue(date)
    }
    render () {
-    console.log(this.props.card.name)
+    // console.log(this.props.card.name)
     return (
       <div className='card-edit-modal'>
         <div className='modal' style={{backgroundColor: this.state.bgColor}} onClick={this.props.closeEditor}>

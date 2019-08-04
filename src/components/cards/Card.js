@@ -49,9 +49,6 @@ export default class Card extends Component {
     })
   }
   render() {
-    console.log(this.props.card)
-    console.log(this.props.card.name)
-    console.log(this.props.card.desc)
     return (
       this.state.showPopup
         ? <React.Fragment>
