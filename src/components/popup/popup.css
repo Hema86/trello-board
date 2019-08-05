@@ -6,9 +6,10 @@
 .tab-list {
     border-bottom: 1px solid #ccc;
     padding-left: 0;
-  }
+    margin-bottom: 0;
+}
   
-  .tab-list-item {
+.tab-list-item {
     display: inline-block;
     list-style: none;
     margin-bottom: -1px;
@@ -16,7 +17,7 @@
     margin: 60px;
     margin-bottom: 0;
     margin-top:10px;
-  }
+}
   
   .date-form{
     margin:10px;
@@ -31,3 +32,30 @@
   .close-btn{
     color: black;
   }
+
+  .file-container{
+    border-bottom: 1px solid #e6e8ec;
+    padding:20px 10px;
+    background:#f3f4f5;
+    border-top: 1px solid #ccc;
+   }
+   .search-file{
+   width: 450px;
+   border: 1px solid;
+   padding: 4px;
+   }
+   .search-file:hover{
+     border-color: #696f7a;
+   }
+   .fileContainer{
+     background: #27b6ba;
+     padding: 5px 50px;
+     margin-left: 19px;
+     width: 78px;
+   }
+   .files-list{
+     background-color: #fff;
+     margin-bottom: 5px;
+   }
+
+ 

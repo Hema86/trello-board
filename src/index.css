@@ -321,7 +321,7 @@ text-decoration: none;
   height: 100px;
   background: white;
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 
 .color-div{

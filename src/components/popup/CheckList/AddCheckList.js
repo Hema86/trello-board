@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Progress from './Progress'
+import '../../popup/popup.css'
 
 export default class AddCheckList extends Component {
   constructor (props) {
@@ -23,18 +25,13 @@ export default class AddCheckList extends Component {
   render () {
     return (
       <div className='checkList'>
-        {this.state.isAdding
-          ? <div className='check-list-adder'>
-             <h3>Checklist</h3>
-             <input type='checkbox' className='checkbox' />
-             <input type='text' className='check-list-input'
+        <Progress />
+        <div className='check-list-adder'>
+          <h3>Checklist</h3>
+          <input type='checkbox' className='checkbox' />
+          <input type='text' className='check-list-input'
                   onKeyDown={this.handleSubmit} onChange={this.handleChange} />
-             </div>
-          : <div className='check-list-adder'>
-              <h3 className='check-list-header'>Checklist</h3>
-              <h3 className='checklist-link'onClick={this.handleClick}>Add a checklist</h3>
-            </div>
-        }
+        </div>
       </div>
     )
   }

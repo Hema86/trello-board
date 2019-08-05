@@ -29,7 +29,6 @@ class Board extends Component {
   }
 
   handleEditingChange = (event) => {
-    // console.log(event.target.value)
     const newText = event.target.value
     this.setState({ chandedText: newText })
   }
@@ -48,7 +47,7 @@ class Board extends Component {
             </div>
             <div className='list-container'>
               {board.lists.map((list, index) =>{
-                 return <List list={list} key={index} updateSingleCard={this.props.updateSingleCard} updateDropElement={this.props.updateDropElement} addCard={this.props.addCard} deleteCard={this.props.deleteCard}/>
+                 return <List list={list} key={index} updateDropElement={this.props.updateDropElement}/>
               })}
               <ListAdder />
             </div>

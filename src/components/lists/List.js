@@ -53,8 +53,6 @@ export default class List extends Component {
     this.props.updateDropElement(data, this.state.draggedTask, index)
   }
   render () {
-    // console.log(this.props.list)
-    // console.log(JSON.stringify(this.props.list))
     return (
       <div className='lists'>
       <div className='list-header'>
@@ -69,7 +67,7 @@ export default class List extends Component {
           ? (this.props.list.cards.map((card, index) => {
             return (
               <div className='cards' key={index} onDragStart={(event) => this.onDrag(event, card)} draggable='true' id={index} >
-                <Card card={card} updateSingleCard={this.props.updateSingleCard} deleteCard={this.props.deleteCard}/>
+                <Card card={card} />
               </div>
             )
           })

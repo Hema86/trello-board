@@ -1,6 +1,7 @@
 import React from 'react'
 import Properties from './Properties'
-import Comments from './Comments'
+// import Comments from './Comments'
+import AddCheckList from './CheckList/AddCheckList'
 import FilesAttach from './FilesAttach'
 import Tabs from './Tabs'
 
@@ -51,8 +52,6 @@ class CardDesc extends React.Component {
     console.log(this.state.chandedText)
     return (
       <div className='card-editor'>
-      {this.props.card
-      ?
         <div className='popup'>
           {this.state.isEditing
             ? <div className='card-header'>
@@ -66,20 +65,17 @@ class CardDesc extends React.Component {
           <h3 className='cancel-btn' onClick={this.clickBack} >X</h3>
           <Tabs>
             <div label='Properties'>
-              <Properties desc={this.props.card.desc} />
+              <Properties desc={this.props.card.desc}/>
             </div>
-            <div label='Comments'>
-              <Comments />
+            <div label='CheckLists'>
+            <AddCheckList />
             </div>
             <div label='Files And Links'>
               <FilesAttach />
             </div>
           </Tabs>
         </div>
-     
-      : null
-        }
-         </div>
+      </div>
     )
   }
 }

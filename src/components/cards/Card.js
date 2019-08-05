@@ -52,14 +52,14 @@ export default class Card extends Component {
     return (
       this.state.showPopup
         ? <React.Fragment>
-            <CardDesc card={this.props.card} closePopup={this.closePopup} updateSingleCard={this.props.updateSingleCard} />
+            <CardDesc card={this.props.card} closePopup={this.closePopup} />
             <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
             <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
         </React.Fragment>
         :<React.Fragment>
           {this.state.isEditing
             ? <div className='pop'>
-                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} updateSingleCard={this.props.updateSingleCard} card={this.props.card} deleteCard={this.props.deleteCard}/>
+                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} card={this.props.card}/>
                 <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
               </div>
             : <React.Fragment>

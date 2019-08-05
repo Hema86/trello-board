@@ -17,14 +17,13 @@ class App extends Component {
   }
   render () {
     const board = this.props.board[0]
-    // console.log(board)
     return (
       <div className='main'>
         <div className='header'>
           <h2>Trello</h2>
         </div>
         {this.props.isLoading
-          ? <Board board={board} updateSingleCard={this.updateSingleCard} updateDropElement={this.updateDropElement} addCard={this.addCard} deleteCard={this.handleDelete} />
+          ? <Board board={board} updateDropElement={this.updateDropElement} />
           : <div className='loader'>
             <div className='load'>
               <h2 onClick={this.handleClick}>Loading cards</h2>

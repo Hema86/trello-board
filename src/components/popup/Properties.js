@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Description from '../popup/Description'
-import AddCheckList from '../../components/popup/CardDesc'
 import './popup.css'
 
 export default class Properties extends Component {
@@ -12,7 +11,6 @@ export default class Properties extends Component {
         <form className='data'>
           <input id='date' type='date' />
         </form>
-        <AddCheckList />
       </div>
     )
   }
