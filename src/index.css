@@ -271,26 +271,6 @@ body {
 .options{
   margin-top: 156px;
 }
-.check-list-input{
-  background: #fff;
-  margin:10px;
-  border:none;
-  padding: 10px;
-  border-left: 1px solid #f8bcb6;
-  margin-left:1px;
-  width:400px;
-  /* display: inline; */
-}
-.check-box{
-  border-right: 1px solid #f8bcb6;
-  background: #fff;
-  margin:10px;
-  padding: 10px;
-  margin-right:1px;
-  height:17px;
-
-
-}
 
 .card-edit-button{
   background: rgba(0,0,0,.6);

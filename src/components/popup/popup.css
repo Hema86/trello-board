@@ -57,5 +57,44 @@
      background-color: #fff;
      margin-bottom: 5px;
    }
+.bar{
+  width: 25%;
+  background: #27b6ba;
+  margin: 30px;
+  border-radius: 16px;
+  height: 10px;
+  margin-left: 10px;
+}
+.bar-value{
+  margin: 30px;
+  margin-top: 26px;
+  margin-right:10px;
+}
+.shell{
+  display: flex;
+}
+.check-list-input{
+  background: #fff;
+  margin: 10px;
+  border: none;
+  padding: 10px;
+  margin-left: 50px;
+  width: 400px;
+  margin-top: 20px;
+}
+.check-box{
+  border-right: 1px solid #f8bcb6;
+  background: #fff;
+  margin:10px;
+  padding: 10px;
+  margin-right:1px;
+  height:17px;
+
+
+}
+.check-list-header{
+  display: flex;
+  justify-content: space-around;
+}
 
  
