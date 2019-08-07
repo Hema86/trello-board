@@ -1,4 +1,4 @@
-import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES } from '../actions/index'
+import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES, ATTACH_FILE } from '../actions/index'
 
 const initialState = {
   isLoading: false,
@@ -28,14 +28,31 @@ function rootReducer (state = initialState, action) {
   }
   if (action.type === GET_FILES) {
     console.log(action.files)
-    console.log(action.id)
     let board = Object.assign({}, state.board[0])
     board.lists.map(list => {
-      list.cards.map(card => {
-        if (card.id === action.id) {
-          card['files'] = action.files
-        }
-      })
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            card['files'] = action.files
+          }
+        })
+      }
+    })
+    return Object.assign({}, state, {
+      board: [board],
+      isLoading: true
+    })
+  }
+  if (action.type === ATTACH_FILE) {
+    let board = Object.assign({}, state.board[0])
+    board.lists.map(list => {
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            card.files = [...card.files, action.file]
+          }
+        })
+      }
     })
     return Object.assign({}, state, {
       board: [board],

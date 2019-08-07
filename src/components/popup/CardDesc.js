@@ -1,9 +1,9 @@
 import React from 'react'
 import Properties from './Properties'
-// import Comments from './Comments'
 import AddCheckList from './CheckList/AddCheckList'
 import FilesAttach from './FilesAttach'
 import Tabs from './Tabs'
+// import { attachNewFile } from '../../actions/index'
 
 
 class CardDesc extends React.Component {
@@ -47,9 +47,12 @@ class CardDesc extends React.Component {
       isPropertyClicked: true
     })
   }
+  // attachFile = (fileName) => {
+  //   this.props.attachNewFile(fileName, this.props.card.id, this.props.card.idList)
+  // }
   render() {
-    console.log(this.props.card)
-    console.log(this.state.chandedText)
+    // console.log(this.props.card)
+    // console.log(this.state.chandedText)
     return (
       <div className='card-editor'>
         <div className='popup'>
@@ -71,7 +74,7 @@ class CardDesc extends React.Component {
             <AddCheckList />
             </div>
             <div label='Files And Links'>
-              <FilesAttach />
+              <FilesAttach files={this.props.files} attachNewFile={this.props.attachNewFile}/>
             </div>
           </Tabs>
         </div>

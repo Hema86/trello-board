@@ -1,9 +1,10 @@
-import { fetchBoardData, updateBoard, createList, getAllFiles } from '../data/boardData'
+import { fetchBoardData, updateBoard, createList, getAllFiles, attachFile } from '../data/boardData'
 
 export const GET_BOARD = 'GET_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const ADD_LIST = 'ADD_LIST'
 export const GET_FILES = 'GET_FILES'
+export const ATTACH_FILE = 'ATTACH_FILE'
 
 export function getBoard (payload) {
   return { type: GET_BOARD, payload }
@@ -14,8 +15,11 @@ export function updateBoardData (data) {
 export function addList (listName) {
   return { type: ADD_LIST, listName }
 }
-export function getFiles (files, id) {
-  return { type: GET_FILES, files, id }
+export function getFiles (files, cardId, listId) {
+  return { type: GET_FILES, files, cardId, listId }
+}
+export function addFile (file, cardId, listId) {
+  return { type: ATTACH_FILE, cardId, listId }
 }
 
 export function fetchBoard () {
@@ -44,11 +48,18 @@ export function addNewList (listName) {
   }
 }
 
-export function getAllFilesAttached (cardId) {
+export function getAllFilesAttached (cardId, listId) {
   return async function (dispatch) {
     const files = await getAllFiles(cardId)
-    console.log(files)
-    const actn = dispatch(getFiles(files, cardId))
+    // console.log(files)
+    const actn = dispatch(getFiles(files, cardId, listId))
+    return actn
+  }
+}
+export function attachNewFile (fileName, filePath, cardId, listId) {
+  return async function (dispatch) {
+    const file = await attachFile(fileName, filePath, cardId)
+    const actn = dispatch(addFile(file, cardId, listId))
     return actn
   }
 }

@@ -4,8 +4,10 @@ import '../cards/card.css'
 import EditPopup from './EditPopup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { connect } from 'react-redux'
+import { getAllFilesAttached, attachNewFile } from '../../actions/index'
 
-export default class Card extends Component {
+class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -16,10 +18,13 @@ export default class Card extends Component {
       bgColor:'#fff'
     }
   }
+  componentDidMount() {
+    this.props.getAllFilesAttached(this.props.card.id, this.props.card.idList)
+  }
   handleClick = (event) => {
     this.setState({
       showPopup: true
-      // domRect: event.target.getBoundingClientRect() 
+
     })
   }
   closePopup = () => {
@@ -48,11 +53,14 @@ export default class Card extends Component {
       bgColor:color
     })
   }
+  attachNewFile = (fileName, filePath) => {
+    this.props.attachNewFile(fileName, filePath, this.props.card.id, this.props.card.idList)
+  }
   render() {
     return (
       this.state.showPopup
         ? <React.Fragment>
-            <CardDesc card={this.props.card} closePopup={this.closePopup} />
+            <CardDesc card={this.props.card} closePopup={this.closePopup} files={this.props.card.files} attachNewFile={this.attachNewFile}/>
             <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
             <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
         </React.Fragment>
@@ -75,3 +83,5 @@ export default class Card extends Component {
     )
   }
 }
+
+export default connect(null, { getAllFilesAttached, attachNewFile })(Card)

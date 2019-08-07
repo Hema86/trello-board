@@ -20,11 +20,11 @@ class ListAdder extends Component {
             title: event.target.value
         })
     }
-        handleSubmit = (event) => {
-            // console.log(this.state.title)
-            event.preventDefault()
-            this.props.addNewList(this.state.title)
-            this.setState({ title: '' })
+    handleSubmit = (event) => {
+      // console.log(this.state.title)
+      event.preventDefault()
+      this.props.addNewList(this.state.title)
+      this.setState({ title: '' })
     }
     clickBack = event =>{
         this.setState({

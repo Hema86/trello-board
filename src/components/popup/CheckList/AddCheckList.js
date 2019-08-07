@@ -7,32 +7,38 @@ export default class AddCheckList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      isAdding: false,
-      tasks:''
+      checkListTitle:'',
+      isAdding: false
     }
   }
   handleChange = (event) => {
-    console.log(event.target.value)
   this.setState({
-    tasks:[...this.tasks, event.target.value]
+    checkListTitle: event.target.value
   })
   }
-  handleClick = () => {
-      this.setState({
-          isAdding:true
-  })
-}
+  handleSubmit = (event) => {
+    console.log('done')
+    event.preventDefault()
+    this.setState({ 
+      checkListTitle: '',
+      isAdding:true
+   })
+ }
 
   render () {
     return (
       <div className='checkList'>
-        <div className='check-list-adder'>
-          <input type='text' className='check-list-input' onKeyDown={this.handleSubmit} onChange={this.handleChange} />
-          <input type='submit' value='createCheckList' className='submit-board-button' />
-          <br/>
-           <CheckList />
-        </div>
+      { this.state.isAdding
+        ? <CheckList title={this.state.checkListTitle}/>
+        : <div className='check-list-adder'>
+            <form onSubmit={this.handleSubmit}>
+              <input type='text' className='check-list-input' onChange={this.handleChange} value={this.state.checkListTitle}/>
+              <input type='submit' value='createCheckList' className='submit-board-button' />
+            </form>
+          </div>    
+      }
       </div>
+
     )
   }
 }

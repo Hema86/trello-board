@@ -44,6 +44,7 @@ class Board extends Component {
                   onKeyDown={this.boardEditingDone} onChange={this.handleEditingChange} />
                 : <span onClick={this.handleEditing}>{this.state.chandedText}</span>
               }
+              <div>delete</div>
             </div>
             <div className='list-container'>
               {board.lists.map((list, index) =>{
