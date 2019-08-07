@@ -27,7 +27,6 @@ function rootReducer (state = initialState, action) {
     })
   }
   if (action.type === GET_FILES) {
-    console.log(action.files)
     let board = Object.assign({}, state.board[0])
     board.lists.map(list => {
       if (list.id === action.listId) {
@@ -44,13 +43,21 @@ function rootReducer (state = initialState, action) {
     })
   }
   if (action.type === ATTACH_FILE) {
+    // console.log(action.listId)
+    // console.log(action.cardId)
+    // console.log(action.files)
     let board = Object.assign({}, state.board[0])
     board.lists.map(list => {
       if (list.id === action.listId) {
         list.cards.map(card => {
+          // console.log('*****')
+          console.log(card.files)
+          // console.log('action.file')
           if (card.id === action.cardId) {
             card.files = [...card.files, action.file]
           }
+          // console.log('*****2')
+          // console.log(card.files)
         })
       }
     })

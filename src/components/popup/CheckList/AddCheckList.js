@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Progress from './Progress'
 import CheckList from './CheckList'
 import '../../popup/popup.css'
 

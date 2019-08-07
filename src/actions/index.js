@@ -19,7 +19,7 @@ export function getFiles (files, cardId, listId) {
   return { type: GET_FILES, files, cardId, listId }
 }
 export function addFile (file, cardId, listId) {
-  return { type: ATTACH_FILE, cardId, listId }
+  return { type: ATTACH_FILE, cardId, listId, file }
 }
 
 export function fetchBoard () {
@@ -60,6 +60,7 @@ export function attachNewFile (fileName, filePath, cardId, listId) {
   return async function (dispatch) {
     const file = await attachFile(fileName, filePath, cardId)
     const actn = dispatch(addFile(file, cardId, listId))
+    // console.log(actn)
     return actn
   }
 }

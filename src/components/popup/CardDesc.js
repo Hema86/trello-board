@@ -15,7 +15,6 @@ class CardDesc extends React.Component {
       isPropertyClicked: false
     }
   }
-
   handleEditing = () => {
     this.setState({
       isEditing: true

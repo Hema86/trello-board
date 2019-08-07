@@ -27,13 +27,13 @@ export const createList = async (listName) => {
 }
 
 export const getAllFiles = async (cardId) => {
-  console.log(cardId)
+  // console.log(cardId)
   const files = await getAllFilesAttached(cardId)
-  console.log(files)
+  // console.log(files)
   return files
 }
-export const attachFile = async (fileName, filePath, cardId) => {
+export const attachFile = async (fileName, filePath, cardId, listId) => {
   const file = await createFileAttach(fileName, filePath, cardId)
-  console.log(file)
+  // console.log(file)
   return file
 }

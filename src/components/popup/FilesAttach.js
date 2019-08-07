@@ -6,17 +6,17 @@ export default class FilesAttach extends Component {
   constructor(props) {
     super(props)
     this.state ={
-      filesAttached: this.props.files
+      filesAttached: this.props.files,
     }
   }
   handleChange = (e) => {
-    console.log(e.target)
+    // console.log(e.target)
     let file = e.target.value.split('\\')[e.target.value.split('\\').length-1]
-    console.log(file)
+    // console.log(file)
     this.props.attachNewFile(file, e.target.value)
   }
   render () {
-    console.log(this.state.filesAttached)
+    // console.log(this.state.filesAttached)
     return (
       <React.Fragment>
       <div className='file-container'>

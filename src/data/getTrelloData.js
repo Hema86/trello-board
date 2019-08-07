@@ -98,7 +98,7 @@ export const dltCard = async (id) => {
 }
 
 export const getAllFilesAttached = async (id) => {
-  console.log(id)
+  // console.log(id)
   const result = await fetch(`https://api.trello.com/1/cards/${id}/attachments?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`, {
     headers: {
       'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export const createFileAttach = async (name, path, cardId) => {
     }
 
   )
-  console.log('********')
-  console.log(result)
+  // console.log('********')
+  // console.log(result)
   return result.json()
 }
