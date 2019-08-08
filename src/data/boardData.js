@@ -1,4 +1,4 @@
-import { getBoardData, getTrelloLists, getAllCards, updateBoardData, createTrelloList, getAllFilesAttached, createFileAttach } from './getTrelloData'
+import { getBoardData, getTrelloLists, getAllCards, updateBoardData, createTrelloList, getAllFilesAttached, createFileAttach, updateCardData } from './getTrelloData'
 
 export const fetchBoardData = async () => {
   const board = await getBoardData()
@@ -20,6 +20,11 @@ export const updateBoard = async (boardName) => {
   return updatedBoard
 }
 
+export const updateCardName = async (cardName, cardId) => {
+  const updatedCard = await updateCardData(cardName, cardId)
+  return updatedCard
+}
+
 export const createList = async (listName) => {
   const createNewList = await createTrelloList(listName)
   // console.log(createNewList)
@@ -36,4 +41,10 @@ export const attachFile = async (fileName, filePath, cardId, listId) => {
   const file = await createFileAttach(fileName, filePath, cardId)
   // console.log(file)
   return file
+}
+
+export const updateDesc = async (cardId, desc) => {
+  const description = await updateDesc(cardId, desc)
+  console.log(description)
+  return description
 }

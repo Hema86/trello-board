@@ -9,6 +9,13 @@ export default class FilesAttach extends Component {
       filesAttached: this.props.files,
     }
   }
+
+  componentDidUpdate () {
+    if(this.props.files.length > this.state.filesAttached.length)
+    this.setState({
+      filesAttached:this.props.files
+    })
+  }
   handleChange = (e) => {
     // console.log(e.target)
     let file = e.target.value.split('\\')[e.target.value.split('\\').length-1]
@@ -16,7 +23,7 @@ export default class FilesAttach extends Component {
     this.props.attachNewFile(file, e.target.value)
   }
   render () {
-    // console.log(this.state.filesAttached)
+    console.log(this.props.files)
     return (
       <React.Fragment>
       <div className='file-container'>
@@ -30,7 +37,7 @@ export default class FilesAttach extends Component {
       ? <img src={image}></img>
       :
       this.state.filesAttached.map((file, index) => {
-        console.log(file)
+        // console.log(file)
         return <div className='files-list' key={index}>
           <img src='https://d30795irbdecem.cloudfront.net/assets/default-file-icon-1b4befb8.svg' />
           <span><a href={file.url}>{file.name}</a></span>

@@ -28,7 +28,7 @@ export default class EditPopup extends Component {
   cardEditingDone = (event) => {
     console.log('done')
     if (event.keyCode === 13) {
-      this.props.updateSingleCard(event.target.value, this.props.card.id, this.props.card.idList)
+      this.props.updateCard(event.target.value, this.props.card.id, this.props.card.idList)
       this.props.closeEditor()
     }
   }
@@ -76,7 +76,7 @@ export default class EditPopup extends Component {
     // console.log(this.props.card.name)
     return (
       <div className='card-edit-modal'>
-        <div className='modal' style={{backgroundColor: this.state.bgColor}} onClick={this.props.closeEditor}>
+        <div className='modal' style={{backgroundColor: this.state.bgColor}}>
          {this.state.isEditing
          ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
          : <div>

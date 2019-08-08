@@ -3,7 +3,6 @@ import Properties from './Properties'
 import AddCheckList from './CheckList/AddCheckList'
 import FilesAttach from './FilesAttach'
 import Tabs from './Tabs'
-// import { attachNewFile } from '../../actions/index'
 
 
 class CardDesc extends React.Component {
@@ -23,7 +22,7 @@ class CardDesc extends React.Component {
   cardEditingDone = (event) => {
     console.log('done')
     if (event.keyCode === 13) {
-      this.props.updateSingleCard(event.target.value, this.props.card.id, this.props.card.idList)
+      this.props.updateCard(event.target.value, this.props.card.id, this.props.card.idList)
       this.setState({
         isEditing: false
       })
@@ -46,9 +45,7 @@ class CardDesc extends React.Component {
       isPropertyClicked: true
     })
   }
-  // attachFile = (fileName) => {
-  //   this.props.attachNewFile(fileName, this.props.card.id, this.props.card.idList)
-  // }
+
   render() {
     // console.log(this.props.card)
     // console.log(this.state.chandedText)
@@ -67,7 +64,7 @@ class CardDesc extends React.Component {
           <h3 className='cancel-btn' onClick={this.clickBack} >X</h3>
           <Tabs>
             <div label='Properties'>
-              <Properties desc={this.props.card.desc}/>
+              <Properties desc={this.props.card.desc} cardId={this.props.card.id} listId={this.props.card.idList} />
             </div>
             <div label='CheckLists'>
             <AddCheckList />
