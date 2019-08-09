@@ -49,8 +49,8 @@ export function checkItemCreater (checkItem, checkListId, cardId, listId) {
   return { type: CHECK_ITEM, checkItem, checkListId, cardId, listId }
 }
 
-export function dltCheckListCreater (deletedCheckList, cardId, listId) {
-  return { type: DELETE_CHECKLIST, deletedCheckList, cardId, listId }
+export function dltCheckListCreater (deletedCheckList, checkListId, cardId, listId) {
+  return { type: DELETE_CHECKLIST, deletedCheckList, checkListId, cardId, listId }
 }
 
 export function fetchBoard () {
@@ -144,10 +144,11 @@ export function createCheckItem (name, checkListId, cardId, listId) {
   }
 }
 
-export function deleteCheckList = (cardId, checkListId, cardId, listId) {
+export function deleteCheckList (cardId, checkListId, listId) {
   return async function (dispatch) {
     const deletedCheckList = await dltCheckList(cardId, checkListId)
-    const actn = dispatch(dltCheckListCreater(deletedCheckList, cardId, listId))
+    console.log(deletedCheckList)
+    const actn = dispatch(dltCheckListCreater(deletedCheckList, checkListId, cardId, listId))
     return actn
   }
 }

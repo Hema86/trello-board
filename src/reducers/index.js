@@ -1,4 +1,5 @@
-import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES, ATTACH_FILE, UPDATE_CARD, UPDATE_DESC, CREATE_CHECKLIST, GET_CHECKLISTS, CHECK_ITEM } from '../actions/index'
+import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES, ATTACH_FILE, UPDATE_CARD, UPDATE_DESC, CREATE_CHECKLIST, GET_CHECKLISTS, CHECK_ITEM, DELETE_CHECKLIST } from '../actions/index'
+import { stat } from 'fs';
 
 const initialState = {
   isLoading: false,
@@ -121,7 +122,7 @@ function rootReducer (state = initialState, action) {
       if (list.id === action.listId) {
         list.cards.map(card => {
           if (card.id === action.cardId) {
-            console.log(card.checkLists)
+            // console.log(card.checkLists)
             card.checkLists = [...card.checkLists, action.checkList]
           }
         })
@@ -145,6 +146,24 @@ function rootReducer (state = initialState, action) {
                 checkList.checkItems = [...checkList.checkItems, action.checkItem]
               }
             })
+          }
+        })
+      }
+    })
+    return Object.assign({}, state, {
+      board: [board],
+      isLoading: true
+    })
+  }
+  if (action.type === DELETE_CHECKLIST) {
+    console.log(action.checkListId, action.cardId, action.listId)
+    const board = state.board[0]
+    board.lists.map(list => {
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            console.log(card.checkLists)
+            // card.checkLists = card.checkLists.filter(checkList => checkList.id !== action.checkListId)
           }
         })
       }

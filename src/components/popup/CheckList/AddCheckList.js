@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import CheckList from './CheckList'
 import '../../popup/popup.css'
 import { addCheckList } from '../../../actions/index'
 import { connect } from 'react-redux'
@@ -8,16 +7,9 @@ class AddCheckList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      checkLists: this.props.checkLists,
+      // checkLists: this.props.checkLists,
       checkListTitle:'',
       isAdding: false
-    }
-  }
-  componentDidUpdate () {
-    if(this.props.checkLists !== this.state.checkLists) {
-      this.setState({
-        checkLists:this.props.checkLists
-      })
     }
   }
   handleChange = (event) => {
@@ -37,7 +29,7 @@ class AddCheckList extends Component {
  }
 
   render () {
-    console.log(this.state.checkLists)
+    // console.log(this.props.checkLists)
     console.log(this.props.listId)
     return (
       <div className='checkList'>
@@ -47,7 +39,6 @@ class AddCheckList extends Component {
             <input type='submit' value='createCheckList' className='submit-board-button' />
           </form>
         </div>    
-      <CheckList checkLists={this.state.checkLists} listId={this.props.listId}/>
       </div>
 
     )

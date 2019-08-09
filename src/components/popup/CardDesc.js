@@ -3,14 +3,26 @@ import Properties from './Properties'
 import AddCheckList from './CheckList/AddCheckList'
 import FilesAttach from './FilesAttach'
 import Tabs from './Tabs'
+import CheckList from './CheckList/CheckList'
+
 
 class CardDesc extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      card:this.props.card,
+      checkLists:this.props.checkLists,
       chandedText: this.props.card.name,
       isEditing: false,
       isPropertyClicked: false
+    }
+  }
+
+  componentDidUpdate () {
+    if(JSON.stringify(this.props.checkLists) !== JSON.stringify(this.state.checkLists)) {
+      this.setState({
+        checkLists: this.props.checkLists
+      })
     }
   }
   handleEditing = () => {
@@ -21,7 +33,7 @@ class CardDesc extends React.Component {
   cardEditingDone = (event) => {
     console.log('done')
     if (event.keyCode === 13) {
-      this.props.updateCard(event.target.value, this.props.card.id, this.props.card.idList)
+      this.props.updateCard(event.target.value, this.state.card.id, this.state.card.idList)
       this.setState({
         isEditing: false
       })
@@ -63,10 +75,13 @@ class CardDesc extends React.Component {
           <h3 className='cancel-btn' onClick={this.clickBack} >X</h3>
           <Tabs>
             <div label='Properties'>
-              <Properties desc={this.props.card.desc} cardId={this.props.card.id} listId={this.props.card.idList} />
+              <Properties desc={this.state.card.desc} cardId={this.state.card.id} listId={this.state.card.idList} />
             </div>
             <div label='CheckLists'>
-            <AddCheckList cardId={this.props.card.id} listId={this.props.card.idList} checkLists={this.props.checkLists} />
+            <AddCheckList cardId={this.state.card.id} listId={this.state.card.idList} />
+            {this.state.checkLists.map((checkList, index) => {
+              return <CheckList checkList={checkList} listId={this.state.card.idList} key={index}/>            
+            })}
             </div>
             <div label='Files And Links'>
               <FilesAttach files={this.props.files} attachNewFile={this.props.attachNewFile}/>

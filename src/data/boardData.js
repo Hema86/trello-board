@@ -1,4 +1,4 @@
-import { getBoardData, getTrelloLists, getAllCards, updateBoardData, createTrelloList, getAllFilesAttached, createFileAttach, updateCardData, addCheckList, getCheckLists, 
+import { getBoardData, getTrelloLists, getAllCards, updateBoardData, createTrelloList, getAllFilesAttached, createFileAttach, updateCardData, addCheckList, getCheckLists,
   createCheckItem, deleteCheckList } from './getTrelloData'
 
 export const fetchBoardData = async () => {
@@ -44,11 +44,11 @@ export const attachFile = async (fileName, filePath, cardId, listId) => {
   return file
 }
 
-export const updateDesc = async (cardId, desc) => {
-  const description = await updateDesc(cardId, desc)
-  console.log(description)
-  return description
-}
+// export const updateDesc = async (cardId, desc) => {
+//   const description = await updateDesc(cardId, desc)
+//   console.log(description)
+//   return description
+// }
 export const createCheckList = async (cardId, title) => {
   const checkList = await addCheckList(cardId, title)
   console.log(checkList)
