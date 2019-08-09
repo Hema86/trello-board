@@ -97,4 +97,13 @@
   justify-content: space-around;
 }
 
+.bar-complete{
+  background: #61bd4f;
+  /* width: 25%; */
+  margin: 30px;
+  border-radius: 16px;
+  height: 10px;
+  margin-left: 10px;
+}
+
  

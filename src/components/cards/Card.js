@@ -5,7 +5,7 @@ import EditPopup from './EditPopup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { connect } from 'react-redux'
-import { getAllFilesAttached, attachNewFile, updateCard } from '../../actions/index'
+import { getAllFilesAttached, attachNewFile, updateCard, getCheckLists } from '../../actions/index'
 
 class Card extends Component {
   constructor(props) {
@@ -20,6 +20,7 @@ class Card extends Component {
   }
   componentDidMount () {
     this.props.getAllFilesAttached(this.props.card.id, this.props.card.idList)
+    this.props.getCheckLists(this.props.card.id, this.props.card.idList)
   }
   componentDidUpdate () {
     if(this.props.card.name !== this.state.chandedText)
@@ -40,8 +41,8 @@ class Card extends Component {
     })
   }
   closeEditor = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
+    // event.preventDefault()
+    // event.stopPropagation()
     this.setState({
       isEditing:false
     })
@@ -75,14 +76,14 @@ class Card extends Component {
       this.state.showPopup
         ? <React.Fragment>
             <CardDesc card={this.props.card} closePopup={this.closePopup} files={this.props.card.files} attachNewFile={this.attachNewFile}
-            updateCard={this.updateCardData}/>
+            updateCard={this.updateCardData} checkLists={this.props.card.checkLists} />
             <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
             <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
         </React.Fragment>
         :<React.Fragment>
           {this.state.isEditing
             ? <div className='pop'>
-                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} card={this.props.card} />
+                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} card={this.props.card} updateCard={this.updateCardData} />
                 <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
               </div>
             : <React.Fragment>
@@ -99,4 +100,4 @@ class Card extends Component {
   }
 }
 
-export default connect(null, { getAllFilesAttached, attachNewFile, updateCard })(Card)
+export default connect(null, { getAllFilesAttached, attachNewFile, updateCard, getCheckLists })(Card)

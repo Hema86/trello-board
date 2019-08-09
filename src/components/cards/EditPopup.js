@@ -75,7 +75,9 @@ export default class EditPopup extends Component {
    render () {
     // console.log(this.props.card.name)
     return (
-      <div className='card-edit-modal'>
+      <React.Fragment>
+      <div className='card-edit-modal' onClick={this.props.closeEditor}>
+      </div>
         <div className='modal' style={{backgroundColor: this.state.bgColor}}>
          {this.state.isEditing
          ? <input type='text' className='edit-card' value={this.state.changedText} onChange={this.handleChange} onKeyDown={this.cardEditingDone}/>
@@ -105,7 +107,7 @@ export default class EditPopup extends Component {
             <a className='option-link'>delete</a>
           </div>
         </div>
-      </div>
+        </React.Fragment>
     )
   }
 }

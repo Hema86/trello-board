@@ -1,4 +1,4 @@
-import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES, ATTACH_FILE, UPDATE_CARD, UPDATE_DESC } from '../actions/index'
+import { GET_BOARD, UPDATE_BOARD, ADD_LIST, GET_FILES, ATTACH_FILE, UPDATE_CARD, UPDATE_DESC, CREATE_CHECKLIST, GET_CHECKLISTS, CHECK_ITEM } from '../actions/index'
 
 const initialState = {
   isLoading: false,
@@ -83,6 +83,68 @@ function rootReducer (state = initialState, action) {
         list.cards.map(card => {
           if (card.id === action.cardId) {
             card.desc = action.desc
+          }
+        })
+      }
+    })
+    return Object.assign({}, state, {
+      board: [board],
+      isLoading: true
+    })
+  }
+
+  if (action.type === GET_CHECKLISTS) {
+    // console.log(action.listId)
+    // console.log('get checklist')
+    // console.log(action.checkLists)
+    let board = Object.assign({}, state.board[0])
+    board.lists.map(list => {
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            card['checkLists'] = action.checkLists
+          }
+        })
+      }
+    })
+    // console.log(board.lists)
+    return Object.assign({}, state, {
+      board: [board],
+      isLoading: true
+    })
+  }
+  if (action.type === CREATE_CHECKLIST) {
+    // console.log('craete checklist')
+    // console.log(action.checkList)
+    let board = Object.assign({}, state.board[0])
+    board.lists.map(list => {
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            console.log(card.checkLists)
+            card.checkLists = [...card.checkLists, action.checkList]
+          }
+        })
+      }
+    })
+    return Object.assign({}, state, {
+      board: [board],
+      isLoading: true
+    })
+  }
+  if (action.type === CHECK_ITEM) {
+    let board = Object.assign({}, state.board[0])
+    board.lists.map(list => {
+      if (list.id === action.listId) {
+        list.cards.map(card => {
+          if (card.id === action.cardId) {
+            console.log(card.checkLists)
+            card.checkLists.map(checkList => {
+              if (checkList.id === action.checkListId) {
+                console.log(checkList.checkItems)
+                checkList.checkItems = [...checkList.checkItems, action.checkItem]
+              }
+            })
           }
         })
       }

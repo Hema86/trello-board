@@ -4,7 +4,6 @@ import AddCheckList from './CheckList/AddCheckList'
 import FilesAttach from './FilesAttach'
 import Tabs from './Tabs'
 
-
 class CardDesc extends React.Component {
   constructor(props) {
     super(props)
@@ -67,7 +66,7 @@ class CardDesc extends React.Component {
               <Properties desc={this.props.card.desc} cardId={this.props.card.id} listId={this.props.card.idList} />
             </div>
             <div label='CheckLists'>
-            <AddCheckList />
+            <AddCheckList cardId={this.props.card.id} listId={this.props.card.idList} checkLists={this.props.checkLists} />
             </div>
             <div label='Files And Links'>
               <FilesAttach files={this.props.files} attachNewFile={this.props.attachNewFile}/>

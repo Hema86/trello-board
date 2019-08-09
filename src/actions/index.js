@@ -1,4 +1,5 @@
-import { fetchBoardData, updateBoard, createList, getAllFiles, attachFile, updateCardName, updateDesc } from '../data/boardData'
+import { fetchBoardData, updateBoard, createList, getAllFiles, attachFile, updateCardName, updateDesc, createCheckList, 
+  getAllcheckLists, checkItem, dltCheckList } from '../data/boardData'
 
 export const GET_BOARD = 'GET_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
@@ -7,6 +8,10 @@ export const GET_FILES = 'GET_FILES'
 export const ATTACH_FILE = 'ATTACH_FILE'
 export const UPDATE_CARD = 'UPDATE_CARD'
 export const UPDATE_DESC = 'UPDATE_DESC'
+export const CREATE_CHECKLIST = 'CREATE_CHECKlIST'
+export const GET_CHECKLISTS = 'GET_CHECKLISTS'
+export const CHECK_ITEM = 'CHECK_ITEM'
+export const DELETE_CHECKLIST = 'DELETE_CHECKLIST'
 
 export function getBoard (payload) {
   return { type: GET_BOARD, payload }
@@ -30,6 +35,22 @@ export function updateCardData (card, cardId, listId) {
 
 export function updateDescData (desc, cardId, listId) {
   return { type: UPDATE_DESC, desc, cardId, listId }
+}
+
+export function checkListCreater (checkList, cardId, listId) {
+  return { type: CREATE_CHECKLIST, cardId, checkList, listId }
+}
+
+export function fetchCheckLists (checkLists, cardId, listId) {
+  return { type: GET_CHECKLISTS, checkLists, cardId, listId }
+}
+
+export function checkItemCreater (checkItem, checkListId, cardId, listId) {
+  return { type: CHECK_ITEM, checkItem, checkListId, cardId, listId }
+}
+
+export function dltCheckListCreater (deletedCheckList, cardId, listId) {
+  return { type: DELETE_CHECKLIST, deletedCheckList, cardId, listId }
 }
 
 export function fetchBoard () {
@@ -95,4 +116,39 @@ export function attachNewFile (fileName, filePath, cardId, listId) {
   }
 }
 
+export function addCheckList (cardId, title, listId) {
+  return async function (dispatch) {
+    const checkList = await createCheckList(cardId, title)
+    console.log(checkList)
+    const actn = dispatch(checkListCreater(checkList, cardId, listId))
+    return actn
+  }
+}
+export function getCheckLists (cardId, listId) {
+  return async function (dispatch) {
+    const checkLists = await getAllcheckLists(cardId)
+    // console.log(checkLists)
+    const actn = dispatch(fetchCheckLists(checkLists, cardId, listId))
+    return actn
+  }
+}
+
+export function createCheckItem (name, checkListId, cardId, listId) {
+  // console.log(listId, checkListId, cardId, name)
+  return async function (dispatch) {
+    const newCheckItem = await checkItem(name, checkListId)
+    // console.log('check')
+    // console.log(newCheckItem)
+    const actn = dispatch(checkItemCreater(newCheckItem, checkListId, cardId, listId))
+    return actn
+  }
+}
+
+export function deleteCheckList = (cardId, checkListId, cardId, listId) {
+  return async function (dispatch) {
+    const deletedCheckList = await dltCheckList(cardId, checkListId)
+    const actn = dispatch(dltCheckListCreater(deletedCheckList, cardId, listId))
+    return actn
+  }
+}
 // export function addDescription 

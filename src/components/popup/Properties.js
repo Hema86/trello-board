@@ -3,19 +3,28 @@ import './popup.css'
 import image from '../../images.jpeg'
 import { updateDescription } from '../../actions/index'
 import { connect } from 'react-redux'
+import DueDate from '../cards/DueDate'
 
 class Properties extends Component {
   constructor (props) {
     super(props)
     this.state = {
         desc:this.props.desc,
-        isEditing: false
+        isEditing: false,
+        showDate:false,
+        dueDate:''
     }
   }
  handleClick = () => {
      this.setState({
          isEditing:true
      })
+ }
+
+ handleDate = () => {
+   this.setState({
+     showDate:true
+   })
  }
  handleOnChange = (event) =>{
      this.setState({
@@ -34,6 +43,15 @@ this.setState({
   isEditing:false
 })
  }
+
+ setDate = (date) =>{
+  console.log(date)
+  this.setState({
+    dueDate: date,
+    showDate:false
+  })
+  // this.props.setDue(date)
+}
   render () {
     return (
       <div className='properties'>
@@ -55,11 +73,12 @@ this.setState({
             </div>
         }
         <h3 className='duedate'>Due Date</h3>
-        <br />
-        <form className='data'>
-          <input id='date' type='date' />
-        </form>
-        <br />
+        {this.state.showDate
+        ? <DueDate setDate={this.state.setDate}/>
+        : this.state.dueDate
+        ? <p>{this.state.dueDate}</p>
+        : <p onClick={this.handleDate}>add a duedate</p>
+        }
         <div className='card-edit-button' onClick={this.handleColor}>
           <img src={image} className='color-img' alt='color picker' />
           <a className='option-link'>color</a>

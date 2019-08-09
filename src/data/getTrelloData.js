@@ -92,7 +92,9 @@ export const dltCard = async (id) => {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-    }
+    },
+    method: 'DELETE'
+
   })
   return result.json()
 }
@@ -137,3 +139,71 @@ export const updateDesc = async (cardId, desc) => {
   )
   return result.json()
 }
+
+export const addCheckList = async (cardId, title) => {
+  const result = await fetch(`https://api.trello.com/1/cards/${cardId}/checklists?name=${title}&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'POST'
+    }
+  )
+  return result.json()
+}
+
+export const getCheckLists = async (cardId) => {
+  const result = await fetch(`https://api.trello.com/1/cards/${cardId}/checklists?checkItems=all&checkItem_fields=name%2CnameData%2Cpos%2Cstate&filter=all&fields=all&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'GET'
+    }
+  )
+  return result.json()
+}
+
+export const createCheckItem = async (name, checkListId) => {
+  const result = await fetch(`https://api.trello.com/1/checklists/${checkListId}/checkItems?name=${name}&pos=bottom&checked=false&key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'POST'
+    }
+  )
+  // console.log(result.json())
+  return result.json()
+}
+
+export const deleteChecklist = async (checkListId, cardId ) => {
+  const result = await fetch(`https://api.trello.com/1/cards/${cardId}/checklists/${checkListId}?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      method: 'DELETE'
+    }
+  )
+  // console.log(result.json())
+  return result.json()
+}
+
+// export const deleteCheckItem = async (checkListId, cardId ) => {
+//   const result = await fetch(`https://api.trello.com/1/cards/2b0bd7e377a6349364c94b/checkItem/idCheckItem?key=2c1d38db56b47f819ffc264753d47e07&token=d7fb8033df901dc4f9f231901f8d7e4bbbdb804262a899a87421b405eafd2daf`,
+//     {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//       },
+//       method: 'DELETE'
+//     }
+//   )
+//   // console.log(result.json())
+//   return result.json()
+// }
