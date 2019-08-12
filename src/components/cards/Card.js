@@ -11,22 +11,22 @@ class Card extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      chandedText:this.props.card.name,
+      chandedText: this.props.card.name,
       showPopup: false,
-      isEditing:false,
-      dueDate:'',
-      bgColor:'#fff'
+      isEditing: false,
+      dueDate: this.props.card.due,
+      bgColor: '#fff'
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     this.props.getAllFilesAttached(this.props.card.id, this.props.card.idList)
     this.props.getCheckLists(this.props.card.id, this.props.card.idList)
   }
-  componentDidUpdate () {
-    if(this.props.card.name !== this.state.chandedText)
-    this.setState({
-      chandedText:this.props.card.name
-    })
+  componentDidUpdate() {
+    if (this.props.card.name !== this.state.chandedText)
+      this.setState({
+        chandedText: this.props.card.name
+      })
   }
 
   handleClick = (event) => {
@@ -44,30 +44,30 @@ class Card extends Component {
     // event.preventDefault()
     // event.stopPropagation()
     this.setState({
-      isEditing:false
+      isEditing: false
     })
   }
   clickEdit = () => {
     this.setState({
-      isEditing:true
+      isEditing: true
     })
   }
   setDue = (date) => {
     this.setState({
-      dueDate:date
+      dueDate: date
     })
   }
   setLabel = (color) => {
     console.log(color)
     this.setState({
-      bgColor:color
+      bgColor: color
     })
   }
   attachNewFile = (fileName, filePath) => {
     this.props.attachNewFile(fileName, filePath, this.props.card.id, this.props.card.idList)
   }
   updateCardData = (cardName, cardId, listId) => {
-   this.props.updateCard(cardName, cardId, listId)
+    this.props.updateCard(cardName, cardId, listId)
   }
   render() {
     // console.log('card')
@@ -75,27 +75,27 @@ class Card extends Component {
     return (
       this.state.showPopup
         ? <React.Fragment>
-            <CardDesc card={this.props.card} closePopup={this.closePopup} files={this.props.card.files} attachNewFile={this.attachNewFile}
-            updateCard={this.updateCardData} checkLists={this.props.card.checkLists} />
-            <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
-            <FontAwesomeIcon icon={faPen} color='#1f5c87'/>
+          <CardDesc card={this.props.card} closePopup={this.closePopup} files={this.props.card.files} attachNewFile={this.attachNewFile}
+            updateCard={this.updateCardData} checkLists={this.props.card.checkLists} setDue={this.setDue} />
+          <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
+          <FontAwesomeIcon icon={faPen} color='#1f5c87' />
         </React.Fragment>
-        :<React.Fragment>
+        : <React.Fragment>
           {this.state.isEditing
             ? <div className='pop'>
-                <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue ={this.setDue} card={this.props.card} updateCard={this.updateCardData} />
-                <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
-              </div>
+              <EditPopup closeEditor={this.closeEditor} setLabel={this.setLabel} setDue={this.setDue} card={this.props.card} updateCard={this.updateCardData} />
+              <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
+            </div>
             : <React.Fragment>
-                {/* <span style={{backgroundColor: this.state.bgColor}}></span> */}
-                <div className='card-content' style={{backgroundColor: this.state.bgColor}}>
-                  <span onClick={this.handleClick}  draggable={true}>{this.state.chandedText}</span>
-                  <span className='due-date'>{this.state.dueDate}</span>
-                </div>
-                <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit}/>
+              {/* <span style={{backgroundColor: this.state.bgColor}}></span> */}
+              <div className='card-content' style={{ backgroundColor: this.state.bgColor }}>
+                <span onClick={this.handleClick} draggable={true}>{this.state.chandedText}</span>
+                <span className='due-date'>{this.state.dueDate}</span>
+              </div>
+              <FontAwesomeIcon icon={faPen} color='#1f5c87' className='ab' onClick={this.clickEdit} />
             </React.Fragment>
-          } 
-         </React.Fragment>
+          }
+        </React.Fragment>
     )
   }
 }

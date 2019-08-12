@@ -12,7 +12,7 @@ class Properties extends Component {
         desc:this.props.desc,
         isEditing: false,
         showDate:false,
-        dueDate:''
+        dueDate:this.props.dueDate
     }
   }
  handleClick = () => {
@@ -50,7 +50,7 @@ this.setState({
     dueDate: date,
     showDate:false
   })
-  // this.props.setDue(date)
+  this.props.setDue(date)
 }
   render () {
     return (
@@ -74,7 +74,7 @@ this.setState({
         }
         <h3 className='duedate'>Due Date</h3>
         {this.state.showDate
-        ? <DueDate setDate={this.state.setDate}/>
+        ? <DueDate setDate={this.setDate}/>
         : this.state.dueDate
         ? <p>{this.state.dueDate}</p>
         : <p onClick={this.handleDate}>add a duedate</p>

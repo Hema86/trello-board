@@ -75,7 +75,8 @@ class CardDesc extends React.Component {
           <h3 className='cancel-btn' onClick={this.clickBack} >X</h3>
           <Tabs>
             <div label='Properties'>
-              <Properties desc={this.state.card.desc} cardId={this.state.card.id} listId={this.state.card.idList} />
+              <Properties desc={this.state.card.desc} cardId={this.state.card.id} listId={this.state.card.idList} setDue={this.props.setDue}
+              dueDate={this.state.card.due}/>
             </div>
             <div label='CheckLists'>
             <AddCheckList cardId={this.state.card.id} listId={this.state.card.idList} />
